@@ -8,7 +8,7 @@ FireApp.prototype.init = function(){
 	this.auth = firebase.auth();
 	this.storage = firebase.storage();
 
-	this.userRef = this.database.ref('users');
+	this.userRef = this.database.ref('articles');
 	// this.auth.onAuthStateChanged(this.isSignedIn.bind(this));
 	console.log('initalized');
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Movie Thoughts Blog by John Kuhn</title>
@@ -79,7 +79,13 @@
 			  firebase.initializeApp(config);
 			</script>
 			<script type="text/javascript">
-				$(document).ready(function(){
+                $(document).ready(function () {
+
+                    firebase.auth().onAuthStateChanged(function (user) {
+                        if (user) {//if we are already signed in
+                            window.location.replace('../index.html');
+                        }
+                    });
 
 					$(document).on('keyup', function(e){
 						if(e.keyCode == 13){
