@@ -47,6 +47,15 @@
 	body {
 		-webkit-text-size-adjust: none;
 	}
+	
+	.loginForm {
+	  margin: 5% 0 0 34%;
+	}
+	
+	.loginButtons {
+    margin: 2% 0 -5% 80%;
+	}
+	
 
 /* Box Model */
 
@@ -2290,6 +2299,11 @@
 
 	header.main > :last-child {
 		margin: 0 0 1em 0;
+	}
+	
+	header .pageDeclaration {
+	  margin-left: -15%;
+    text-decoration: underline;
 	}
 
 /* Form */
