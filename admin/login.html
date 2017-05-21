@@ -30,25 +30,27 @@
 							<!-- Section -->
 							<section>
 							  <!-- Form -->
-	    						<div class="loginForm">
-				                  <div class="row uniform">
-				                    <div class="6u 12u$(xsmall)">
-				                      <input id="demo-email" name="email" placeholder="Email" type="email" value="">
-				                    </div>
-				                  </div>
-				                  <div class="row uniform">
-				                    <div class="6u$ 12u$(xsmall)">
-				                      <input id="demo-email" name="password" placeholder="Password" type="password" value="">
-				                    </div>
-				                  </div>
-				                  <div class="row uniform">
-				                    <div class="12u$">
-				                      <ul class="actions">
-				                        <li><input class="special" type="submit" value="Login"></li>
-				                      </ul>
-				                    </div>
-				                  </div>
-				                </div>
+							    <form onsubmit="return false">
+  	    						<div class="loginForm">
+  				            <div class="row uniform">
+  				              <div class="6u 12u$(xsmall)">
+  				                <input id="demo-email" name="email" placeholder="Email" type="email" value="" required>
+  				              </div>
+  				            </div>
+  				            <div class="row uniform">
+  				              <div class="6u$ 12u$(xsmall)">
+  				                <input id="demo-email" name="password" placeholder="Password" type="password" value="" required>
+  				              </div>
+  				            </div>
+  				            <div class="row uniform">
+  				              <div class="12u$">
+  				                <ul class="actions">
+  				                  <li><input class="special" type="submit" value="Login"></li>
+  				                </ul>
+  				              </div>
+  				            </div>
+  				          </div>
+				          </form>
 							</section>
 
 						</div>
@@ -77,13 +79,13 @@
 			  firebase.initializeApp(config);
 			</script>
 			<script type="text/javascript">
-                $(document).ready(function () {
+        $(document).ready(function () {
 
-                    firebase.auth().onAuthStateChanged(function (user) {
-                        if (user) {//if we are already signed in
-                            window.location.replace('index.html');
-                        }
-                    });
+          firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {//if we are already signed in
+              window.location.replace('index.html');
+            }
+          });
 
 					$(document).on('keyup', function(e){
 						if(e.keyCode == 13){
