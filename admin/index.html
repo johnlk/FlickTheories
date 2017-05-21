@@ -94,6 +94,12 @@
 			<script type="text/javascript">
         $(document).ready(function () {
           
+          firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {//if we are already signed in
+              window.location.replace('login.html');
+            }
+          });
+          
           $('#logout').on('click', function(){
             console.log('eyah');
             window.fireApp.signOut();
