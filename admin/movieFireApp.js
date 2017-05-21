@@ -8,10 +8,17 @@ FireApp.prototype.init = function(){
 	this.auth = firebase.auth();
 	this.storage = firebase.storage();
 
-	this.userRef = this.database.ref('articles');
-	// this.auth.onAuthStateChanged(this.isSignedIn.bind(this));
-	console.log('initalized');
-}
+	this.articleRef = this.database.ref('articles');
+	console.log('intialized');
+	
+	this.articleRef.on('value', function(snapshot){
+	  console.log(snapshot.val());
+	});
+};
+
+FireApp.prototype.addArticle = function(obj){
+  this.articleRef.push(obj);
+};
 
 FireApp.prototype.signOut = function() {
   this.auth.signOut();
@@ -33,4 +40,4 @@ FireApp.prototype.checkSetup = function() {
 
 window.onload = function(){
 	window.fireApp = new FireApp();
-}
+};

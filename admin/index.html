@@ -36,21 +36,23 @@
 											<input type="text" name="articleTitle" id="demo-name" value="" placeholder="Article Title" />
 										</div>
 										<div class="6u 12u$(xsmall)">
-										  <form method="post" action="#">
-    										<input type="text" name="query" id="query" placeholder="Movie Search" />
-    									</form>
+										  <div id="search" style="margin-bottom: -5%;">
+  										  <form method="post" action="#">
+      										<input type="text" name="query" id="query" placeholder="Movie Search" />
+      									</form>
+    									</div>
 										</div>
 									</div>
 									<div class="row uniform">
 										<div class="6u$ 12u$(xsmall)">
-											<input type="text" name="author" id="demo-email" value="" placeholder="Signing Author" />
+											<input type="text" name="author" value="" placeholder="Signing Author" />
 										</div>
 										<div class="12u$">
-											<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+											<textarea name="articleText" id="demo-message" placeholder="Article Text ..." rows="10"></textarea>
 										</div>
 										<div class="12u$">
 											<ul class="actions">
-										  	<li><input type="submit" value="Article Text" class="special" /></li>
+										  	<li><input type="submit" value="Submit Article" class="special" /></li>
 											</ul>
 										</div>
 									</div>
@@ -85,7 +87,55 @@
 			<script type="text/javascript">
         $(document).ready(function () {
 
+          $('input[type="submit"]').on('click', function(){
+            
+            var articleTitle = $('input[name="articleTitle"]').val();
+            var author = $('input[name="author"]').val();
+            var articleText = $('textarea').val();
+            
+            var date = new Date().getTime() + "";
+            
+            if(!isFilled($('input[name="articleTitle"]')) || !isFilled($('input[name="author"]')) || !isFilled($('textarea'))){
+              return;
+            }
+            
+            firebase.auth().onAuthStateChanged(function (user) {
+              if (user) {//if we are signed in
+                window.fireApp.addArticle({
+                  articleText: articleText,
+                  articleTitle: articleTitle,
+                  author: author,
+                  movieTitle: "Generic Movie",
+                  movieGenre: "unknown",
+                  movieYear: "unknown",
+                  userUID: user.uid,
+                  dateCreate: date
+                });
+                
+                alert('success');
+                $('input[name="articleTitle"]').val('');
+                $('input[name="author"]').val('');
+                $('textarea').val('');
+              }
+            });
+            
+          });
           
+          function isFilled(element){
+            var text = element.val();
+            if(text.length < 1){
+              element.css('border', '2px solid red');
+              element.css('color', 'red');
+              element.val('please complete this section');
+              element.on('click', function(){
+                element.val('');
+                element.css('border-color', 'rgba(210, 215, 217, 0.75)');
+                element.css('color', 'rgb(127, 136, 143)');
+              });
+              return false;
+            }
+            return true;
+          }
 
 				});
 			</script>
