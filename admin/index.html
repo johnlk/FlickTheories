@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Movie Thoughts Blog by John Kuhn</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+
+		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	</head>
+	<body>
+  
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<span><strong>Movie</strong> Thoughts</span>
+									<h3 class="pageDeclaration">Edit and add Articles</h3>
+								</header>
+								
+							<!-- Section -->
+							<section>
+							  <div class="addAnArticle">
+							    <h3>New Article</h3>
+							    <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+											<input type="text" name="articleTitle" id="demo-name" value="" placeholder="Article Title" />
+										</div>
+										<div class="6u 12u$(xsmall)">
+										  <form method="post" action="#">
+    										<input type="text" name="query" id="query" placeholder="Movie Search" />
+    									</form>
+										</div>
+									</div>
+									<div class="row uniform">
+										<div class="6u$ 12u$(xsmall)">
+											<input type="text" name="author" id="demo-email" value="" placeholder="Signing Author" />
+										</div>
+										<div class="12u$">
+											<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+										</div>
+										<div class="12u$">
+											<ul class="actions">
+										  	<li><input type="submit" value="Article Text" class="special" /></li>
+											</ul>
+										</div>
+									</div>
+							  </div>
+							</section>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+			<script src="movieFireApp.js"></script>
+			<script>
+			  // Initialize Firebase
+			  var config = {
+			    apiKey: "AIzaSyCwNaBXbDWunUuT5HuMzxgQRNF0ByOiq04",
+			    authDomain: "moviethoughts-d188d.firebaseapp.com",
+			    databaseURL: "https://moviethoughts-d188d.firebaseio.com",
+			    projectId: "moviethoughts-d188d",
+			    storageBucket: "moviethoughts-d188d.appspot.com",
+			    messagingSenderId: "923578276783"
+			  };
+			  firebase.initializeApp(config);
+			</script>
+			<script type="text/javascript">
+        $(document).ready(function () {
+
+          
+
+				});
+			</script>
+
+	</body>
+</html>
