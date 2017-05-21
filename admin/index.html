@@ -20,6 +20,13 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
+						  
+						  <div class="loginButtons">
+								<ul class="actions">
+									<li><input id="logout" name="logout" type="submit" value="Logout" /></li>
+								</ul>
+						  </div>
+						  
 
 							<!-- Header -->
 								<header id="header">
@@ -52,7 +59,7 @@
 										</div>
 										<div class="12u$">
 											<ul class="actions">
-										  	<li><input type="submit" value="Submit Article" class="special" /></li>
+										  	<li><input name="submit" type="submit" value="Submit Article" class="special" /></li>
 											</ul>
 										</div>
 									</div>
@@ -86,8 +93,14 @@
 			</script>
 			<script type="text/javascript">
         $(document).ready(function () {
+          
+          $('#logout').on('click', function(){
+            console.log('eyah');
+            window.fireApp.signOut();
+            window.location.replace('login.html');
+          });
 
-          $('input[type="submit"]').on('click', function(){
+          $('input[name="submit"]').on('click', function(){
             
             var articleTitle = $('input[name="articleTitle"]').val();
             var author = $('input[name="author"]').val();

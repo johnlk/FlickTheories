@@ -10,10 +10,6 @@ FireApp.prototype.init = function(){
 
 	this.articleRef = this.database.ref('articles');
 	console.log('intialized');
-	
-	this.articleRef.on('value', function(snapshot){
-	  console.log(snapshot.val());
-	});
 };
 
 FireApp.prototype.addArticle = function(obj){
