@@ -8,9 +8,7 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
-
-		<!-- <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script> -->
-
+		
 		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	</head>
@@ -83,7 +81,7 @@
 
                     firebase.auth().onAuthStateChanged(function (user) {
                         if (user) {//if we are already signed in
-                            window.location.replace('../index.html');
+                            window.location.replace('../index.html');                            
                         }
                     });
 
@@ -106,8 +104,6 @@
 					});
 
 					function login(username, password){
-						// console.log("signing in for: " + username);
-						// console.log("and: " + password);
 						firebase.auth().signInWithEmailAndPassword(username, password).then(function(){
 							window.location.replace('../index.html');
 						}).catch(function(error) {
