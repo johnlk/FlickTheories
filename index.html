@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Movie Thoughts Blog by John Kuhn</title>
@@ -20,11 +20,10 @@
 						  
 						  <div class="loginButtons">
 								<ul class="actions">
-									<li><input type="submit" value="Login" class="special" /></li>
-									<li><input type="submit" value="Create Account" /></li>
+									<li><input id="loginModal" type="submit" value="Login" class="special" /></li>
+									<li><input id="createAccountModal" type="submit" value="Create Account" /></li>
 								</ul>
 						  </div>
-						  
 
 							<!-- Header -->
 								<header id="header">
@@ -50,7 +49,7 @@
 										fear into the heart of an emeny gang leader, as his contract had asked. He
 										&hellip;</p>
 										<ul class="actions">
-											<li><a href="#" class="button big">Full Article</a></li>
+											<li><a href="articlePage.html" class="button big">Full Article</a></li>
 										</ul>
 									</div>
 									<span class="image object">
@@ -102,6 +101,68 @@
 
 						</div>
 					</div>
+					
+				<!-- Login Modal -->
+				  <div class="modal">
+				    <div class="loginForm modal-content animate">
+				      <form onsubmit="return false">
+    				    <div class="row uniform">
+    				      <div class="12u 12u$(xsmall)">
+    				        <input id="demo-email" name="email" placeholder="Email" type="email" value="" required>
+    				      </div>
+    				    </div>
+    				    <div class="row uniform">
+    				      <div class="12u$ 12u$(xsmall)">
+    				        <input id="demo-email" name="password" placeholder="Password" type="password" value="" required>
+    				      </div>
+    				    </div>
+    				    <div class="row uniform">
+    				      <div class="12u$">
+    				        <ul class="actions">
+    				          <li><input id="loginButton" class="special" type="submit" value="Login"></li>
+    				          <li><input class="cancel" type="submit" value="Cancel"></li>
+    				        </ul>
+    				      </div>
+    				    </div>
+  				    </form>
+  				  </div>
+				  </div>
+				
+				<!-- Create Account Modal -->
+				  <div class="modal">
+				    <div class="loginForm modal-content animate" style="height: 48%;">
+				      <form onsubmit="return false">
+				        <div class="row uniform">
+    				      <div class="12u 12u$(xsmall)">
+    				        <input id="newName" name="name" placeholder="Name" type="text" value="" required>
+    				      </div>
+    				    </div>
+    				    <div class="row uniform">
+    				      <div class="12u 12u$(xsmall)">
+    				        <input id="newEmail" name="email" placeholder="Email" type="email" value="" required>
+    				      </div>
+    				    </div>
+    				    <div class="row uniform">
+    				      <div class="12u$ 12u$(xsmall)">
+    				        <input id="pass" name="password" placeholder="Password" type="password" value="" required>
+    				      </div>
+    				    </div>
+    				    <div class="row uniform">
+    				      <div class="12u$ 12u$(xsmall)">
+    				        <input id="passConfirm" name="password" placeholder="Confirm Password" type="password" value="" required>
+    				      </div>
+    				    </div>
+    				    <div class="row uniform">
+    				      <div class="12u$">
+    				        <ul class="actions">
+    				          <li><input id="createAccountButton" class="special" type="submit" value="Create Account"></li>
+    				          <li><input class="cancel" type="submit" value="Cancel"></li>
+    				        </ul>
+    				      </div>
+    				    </div>
+  				    </form>
+  				  </div>
+				  </div>
 
 				<!-- Sidebar -->
 					<div id="sidebar">
@@ -154,5 +215,42 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+			
+			<script>
+			  $(document).ready(function(){
+			    
+			    $('#loginModal').on('click', function(){
+			      $('.modal').eq(0).css('display', 'block');
+			    });
+			    
+			    $('#createAccountModal').on('click', function(){
+			      $('.modal').eq(1).css('display', 'block');
+			    });
+			    
+			    $('.cancel').on('click', function(){
+			      $('.modal').css('display', 'none');
+			    });
+			    
+			    $('#pass').on('change', function(){
+			      validatePassword();
+			    });
+			    
+			    $('#passConfirm').on('keyup', function(){
+			      validatePassword();
+			    });
+			    
+			    function validatePassword(){
+			      var password = document.getElementById('pass');
+			      var confirmPass = document.getElementById('passConfirm');
+			      
+			      if (password.value != confirmPass.value) {
+              confirmPass.setCustomValidity("Passwords Don't Match");
+            } else {
+              confirmPass.setCustomValidity('');
+            }
+			    }
+			    
+			  });
+			</script>
 	</body>
 </html>
