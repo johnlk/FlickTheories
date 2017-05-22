@@ -57,7 +57,7 @@
 	}
 	
 	.welcomeBack {
-	  margin: 2% 0 -3% 83%;
+	  margin: 2% 0 -3% 81%;
 	}
 	
 	.modal {
@@ -78,9 +78,8 @@
 	  margin: 5% auto 15% auto;
 	  border: 1px solid #888;
 	  width: 40%;
-    height: 30%;
-    padding: 2% 5% 0 5%;
-    border-radius: 15px;
+	  padding: 2% 5% 0 5%;
+	  border-radius: 15px;
 	}
 	
 	.animate {
