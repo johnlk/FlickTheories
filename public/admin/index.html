@@ -48,16 +48,7 @@
         									<input type="text" name="query" id="query" placeholder="Movie Search" />
                           <div id="movieSuggestions">
                             <ul>
-                              <!-- <li>
-                                <span class="movieTitle">The fast and the furious</span>
-                                <img class="moviePoster" src="http://image.tmdb.org/t/p/w185/rgDMhNs1d2Jxb996BbN1BFkgvEU.jpg" />
-                                <span class="movieYear">(2010)</span>
-                              </li>
-                              <li>
-                                <span class="movieTitle">Too fast too furious</span>
-                                <img class="moviePoster" src="http://image.tmdb.org/t/p/w185/rgDMhNs1d2Jxb996BbN1BFkgvEU.jpg" />
-                                <span class="movieYear">(2014)</span>
-                              </li> -->
+                              <!-- TO be populated by JS -->
                             </ul>
                           </div>
         								</form>
@@ -143,23 +134,11 @@
             firebase.auth().onAuthStateChanged(function (user) {//makes sure they are signed in
               if (user) {//if we are signed in
 
-                // var mTitle = "";
-                // var mGenres = [];
-                // var mRelease = "";
-                // var mTagline = "";
-                // var mRating = "";
-                // var mPoster = "";
-
                 $.ajax({
                   url: "https://api.themoviedb.org/3/movie/" + movieID + "?api_key=3695836366d96b2e76475a778f85850f", //movieID is global declaration
                   type: "GET",
                   success: function(result) {     
                     var genres = [];
-                    // mTitle = result.title;
-                    // mRelease = result.release_date;
-                    // mTagline = result.tagline;
-                    // mRating = result.vote_average;
-                    // mPoster = "http://image.tmdb.org/t/p/w185" + result.poster_path;
                     for(var i = 0; i < result.genres.length; i++){
                       genres.push(result.genres[i].name);
                     }
@@ -220,7 +199,6 @@
               type: "GET",
               success: function(result) {
                 var suggestions = result.results.slice(0, 3);
-                //console.log(suggestions);
                 $('#movieSuggestions ul').html('');
                 for(var i = 0; i < suggestions.length; i++){
                   $('#movieSuggestions ul').append('<li>' + 
@@ -242,7 +220,6 @@
             $("#query").val(title);
             $('#movieSuggestions ul').html('');
             movieID = id;
-            // console.log(movieID);
           });
 
 				});
