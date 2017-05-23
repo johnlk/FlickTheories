@@ -25,7 +25,18 @@ admin.initializeApp(functions.config().firebase);
 
 exports.getAllArticles = functions.https.onRequest((req, res) => {
 
-	admin.database().ref('/articles').on('value', function(snapshot){
+	admin.database().ref('/articles').orderByChild('dateCreate').on('value', function(snapshot){
+		res.send(snapshot.val());
+	});
+
+});
+
+//works just fine!
+exports.getFirstArticles = functions.https.onRequest((req, res) => {
+
+	var limit = parseInt(req.query.limit);
+
+	admin.database().ref('/articles').limitToFirst(limit).on('value', function(snapshot){
 		res.send(snapshot.val());
 	});
 
@@ -35,6 +46,11 @@ exports.getArticleByName = functions.https.onRequest((req, res) => {
 
 	var name = req.query.name;
 
-	res.send(name);
+	admin.database().ref('/articles').on('value', function(snapshot) {
+		var allArticles = snapshot.val(); //object {}
+		// for(var i = 0; i < allArticles.length; i++){
+
+		// }
+	});
 
 });
