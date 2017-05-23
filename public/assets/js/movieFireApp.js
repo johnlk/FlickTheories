@@ -20,6 +20,10 @@ FireApp.prototype.signOut = function() {
   this.auth.signOut();
 };
 
+FireApp.prototype.addToMovieList = function(obj) {
+  this.database.ref('movieList').push(obj);
+};
+
 FireApp.prototype.checkSetup = function() {
   if (!window.firebase || !(firebase.app instanceof Function) || !window.config) {
     window.alert('You have not configured and imported the Firebase SDK. ' +
