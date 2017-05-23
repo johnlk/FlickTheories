@@ -35,6 +35,6 @@ exports.getArticleByName = functions.https.onRequest((req, res) => {
 
 	var name = req.query.name;
 
-	res.send()
+	res.send(name);
 
 });
