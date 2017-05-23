@@ -42,15 +42,26 @@ exports.getFirstArticles = functions.https.onRequest((req, res) => {
 
 });
 
+//working great
 exports.getArticleByName = functions.https.onRequest((req, res) => {
 
-	var name = req.query.name;
+	var name = req.query.title;
 
 	admin.database().ref('/articles').on('value', function(snapshot) {
 		var allArticles = snapshot.val(); //object {}
-		// for(var i = 0; i < allArticles.length; i++){
 
-		// }
+		for(key in allArticles){
+			if(allArticles.hasOwnProperty(key)){
+				var article = allArticles[key];
+				if(article["articleTitle"] == name){
+					res.send(article);
+					return;
+				}
+			}
+		}
+
+		res.send("No article found :(");
+
 	});
 
 });
