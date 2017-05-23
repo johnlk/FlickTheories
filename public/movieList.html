@@ -51,7 +51,7 @@
 								<section>
 									<header class="main">
 										<h2>Upcoming Movie Articles</h2>
-										<p>Here are the list of movies we are waiting to watch and write about. Email us if you want a perticiularly thought provoking movie added to our current list.</p>
+										<p>Here is the list of movies we are waiting to watch and write about. Email us if you want a perticiularly thought provoking movie added to our current list.</p>
 									</header>
 							
 							<!-- Table -->
@@ -60,12 +60,14 @@
 										<thead>
 											<tr>
 												<th>Name</th>
-												<th>Genre</th>
+												<th>Tagline</th>
+												<th>Genres</th>
 												<th>Year</th>
+												<th>Rating</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
+											<!-- <tr>
 								  			<td>Conjuring</td>
 												<td>Horror</td>
 												<td>2013</td>
@@ -94,7 +96,7 @@
 												<td>Dark Knight</td>
 												<td>Action, Thriller</td>
 												<td>2011</td>
-											</tr>
+											</tr> -->
 										</tbody>
 										<!--<tfoot>-->
 											<!--	<tr>-->
@@ -252,6 +254,57 @@
 			  firebase.initializeApp(config);
 			</script>
 			<script src="assets/js/loginLogout.js"></script>
+
+			<script>
+				$(document).ready(function(){
+					//alert('working');
+					// $.ajax({
+					//      url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieList",
+					//      dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
+					//      // data: {
+					//      // 	format: "json"
+					//      // },
+					//      success: function(response){
+					//         console.log(response);
+					//      },
+					//      error: function(error){
+					//      	console.log(error);
+					//      }      
+					// });
+
+					jQuery.support.cors = true;
+					$.ajax({
+					    url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieList/",
+					    type: "GET",
+					    dataType: "json",
+            			crossDomain: true,
+					    success: function(data) {
+					    	console.log(data);
+					    },
+					    error: function(error) {
+					    	console.log(error);
+					    }
+					});
+
+					// $.getJSON( "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieList", function( data ) {
+					// 	console.log(data);
+					// });
+
+					// $.ajax({
+		   //              url: 'https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieList',
+		   //              dataType: 'jsonp',
+		   //              jsonp: 'callback',
+		   //              jsonpCallback: 'jsonpCallback',
+		   //              success: function(){
+		   //                  console.log("success");
+		   //              }
+		   //          });
+
+					// function jsonpCallback(data){
+					// 	console.log(data);
+				 //    }
+				});
+			</script>
 
 	</body>
 </html>
