@@ -10,19 +10,7 @@ admin.initializeApp(functions.config().firebase);
 //  response.send("Hello from Firebase!");
 // });
 
-
-// Take the text parameter passed to this HTTP endpoint and insert it into the
-// Realtime Database under the path /messages/:pushId/original
-// exports.addMessage = functions.https.onRequest((req, res) => {
-//   // Grab the text parameter.
-//   const original = req.query.text;
-//   // Push it into the Realtime Database then send a response
-//   admin.database().ref('/messages').push({original: original}).then(snapshot => {
-//     // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
-//     res.redirect(303, snapshot.ref);
-//   });
-// });
-
+//works fine too
 exports.getAllArticles = functions.https.onRequest((req, res) => {
 
 	admin.database().ref('/articles').orderByChild('dateCreate').on('value', function(snapshot){
@@ -43,9 +31,11 @@ exports.getFirstArticles = functions.https.onRequest((req, res) => {
 });
 
 //working great
-exports.getArticleByName = functions.https.onRequest((req, res) => {
+//user ?title= or ?movie=
+exports.getArticle = functions.https.onRequest((req, res) => {
 
-	var name = req.query.title;
+	var title = req.query.title;
+	var movie = req.query.movie;
 
 	admin.database().ref('/articles').on('value', function(snapshot) {
 		var allArticles = snapshot.val(); //object {}
@@ -53,7 +43,7 @@ exports.getArticleByName = functions.https.onRequest((req, res) => {
 		for(key in allArticles){
 			if(allArticles.hasOwnProperty(key)){
 				var article = allArticles[key];
-				if(article["articleTitle"] == name){
+				if(article["articleTitle"] == title || article["movieTitle"] == movie){
 					res.send(article);
 					return;
 				}
