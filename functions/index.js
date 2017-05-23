@@ -38,9 +38,9 @@ exports.getArticleRange = functions.https.onRequest((req, res) => {
 	var lowerLimit = parseInt(req.query.lower);
 	var upperLimit = parseInt(req.query.upper);
 
-	admin.database().ref('/articles').startAt(lowerLimit).limitToFirst(upperLimit).on('value', function(snapshot) {
+	admin.database().ref('/articles').startAt(lowerLimit).endAt(upperLimit).on('value', function(snapshot) {
 		res.send(snapshot.val());
-	});	
+	});
 
 });
 
@@ -70,9 +70,21 @@ exports.getArticleBy = functions.https.onRequest((req, res) => {
 
 });
 
+//works
 exports.getMovieList = functions.https.onRequest((req, res) => {
 
 	admin.database().ref('/movieList').on('value', function(snapshot) {
+		res.send(snapshot.val());
+	});
+
+});
+
+//works
+exports.getMovieListUpTo = functions.https.onRequest((req, res) => {
+
+	var limit = parseInt(req.query.limit);
+
+	admin.database().ref('/movieList').limitToFirst(limit).on('value', function(snapshot) {
 		res.send(snapshot.val());
 	});
 
