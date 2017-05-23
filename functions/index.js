@@ -10,7 +10,7 @@ admin.initializeApp(functions.config().firebase);
 //  response.send("Hello from Firebase!");
 // });
 
-//works fine too
+//returns all articles
 exports.getAllArticles = functions.https.onRequest((req, res) => {
 
 	admin.database().ref('/articles').orderByChild('dateCreate').on('value', function(snapshot){
@@ -20,7 +20,8 @@ exports.getAllArticles = functions.https.onRequest((req, res) => {
 });
 
 //works just fine!
-exports.getFirstArticles = functions.https.onRequest((req, res) => {
+//?limit=10
+exports.getArticlesUpTo = functions.https.onRequest((req, res) => {
 
 	var limit = parseInt(req.query.limit);
 
@@ -30,9 +31,22 @@ exports.getFirstArticles = functions.https.onRequest((req, res) => {
 
 });
 
+//TODO
+//needs fixing
+exports.getArticleRange = functions.https.onRequest((req, res) => {
+
+	var lowerLimit = parseInt(req.query.lower);
+	var upperLimit = parseInt(req.query.upper);
+
+	admin.database().ref('/articles').startAt(lowerLimit).limitToFirst(upperLimit).on('value', function(snapshot) {
+		res.send(snapshot.val());
+	});	
+
+});
+
 //working great
 //user ?title= or ?movie=
-exports.getArticle = functions.https.onRequest((req, res) => {
+exports.getArticleBy = functions.https.onRequest((req, res) => {
 
 	var title = req.query.title;
 	var movie = req.query.movie;
