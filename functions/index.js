@@ -90,9 +90,10 @@ exports.getMovieListUpTo = functions.https.onRequest((req, res) => {
 
 });
 
+//works
 exports.getAdmins = functions.https.onRequest((req, res) => {
 
-	admin.database.ref('/admins').on('value', function(snapshot) {
+	admin.database().ref('/admins').on('value', function(snapshot) {
 		res.send(snapshot.val());
 	});
 
