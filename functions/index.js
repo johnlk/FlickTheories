@@ -13,7 +13,7 @@ admin.initializeApp(functions.config().firebase);
 //returns all articles
 exports.getAllArticles = functions.https.onRequest((req, res) => {
 
-	admin.database().ref('/articles').orderByChild('dateCreate').on('value', function(snapshot){
+	admin.database().ref('/articles').orderByChild('dateCreated').on('value', function(snapshot){
 		res.send(snapshot.val());
 	});
 
@@ -85,6 +85,14 @@ exports.getMovieListUpTo = functions.https.onRequest((req, res) => {
 	var limit = parseInt(req.query.limit);
 
 	admin.database().ref('/movieList').limitToFirst(limit).on('value', function(snapshot) {
+		res.send(snapshot.val());
+	});
+
+});
+
+exports.getAdmins = functions.https.onRequest((req, res) => {
+
+	admin.database.ref('/admins').on('value', function(snapshot) {
 		res.send(snapshot.val());
 	});
 
