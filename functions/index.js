@@ -99,5 +99,3 @@ exports.getAdmins = functions.https.onRequest((req, res) => {
 
 });
 
-
-

@@ -83,7 +83,15 @@
 
           firebase.auth().onAuthStateChanged(function (user) {
             if (user) {//if we are already signed in
-              window.location.replace('index.html');
+
+            	//want to replace with cloud function call
+            	uid = "URiRTmp97VhR1mU7Gss2ACmep9J3";
+
+            	if(user.uid == uid){
+              		window.location.replace('index.html');
+            	}else{
+            		alert("you don't have admin access");
+            	}
             }
           });
 
@@ -106,9 +114,7 @@
 					});
 
 					function login(username, password){
-						firebase.auth().signInWithEmailAndPassword(username, password).then(function(){
-							window.location.replace('../index.html');
-						}).catch(function(error) {
+						firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
 						    // Handle Errors here.
 							var errorCode = error.code;
 							var errorMessage = error.message;
