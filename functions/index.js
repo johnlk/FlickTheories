@@ -69,3 +69,14 @@ exports.getArticleBy = functions.https.onRequest((req, res) => {
 	});
 
 });
+
+exports.getMovieList = functions.https.onRequest((req, res) => {
+
+	admin.database().ref('/movieList').on('value', function(snapshot) {
+		res.send(snapshot.val());
+	});
+
+});
+
+
+
