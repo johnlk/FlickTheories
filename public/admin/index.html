@@ -46,6 +46,20 @@
   									  <div id="search" style="margin-bottom: -5%;">
     									  <form method="post" onsubmit="return false">
         									<input type="text" name="query" id="query" placeholder="Movie Search" />
+                          <div id="movieSuggestions">
+                            <ul>
+                              <!-- <li>
+                                <span class="movieTitle">The fast and the furious</span>
+                                <img class="moviePoster" src="http://image.tmdb.org/t/p/w185/rgDMhNs1d2Jxb996BbN1BFkgvEU.jpg" />
+                                <span class="movieYear">(2010)</span>
+                              </li>
+                              <li>
+                                <span class="movieTitle">Too fast too furious</span>
+                                <img class="moviePoster" src="http://image.tmdb.org/t/p/w185/rgDMhNs1d2Jxb996BbN1BFkgvEU.jpg" />
+                                <span class="movieYear">(2014)</span>
+                              </li> -->
+                            </ul>
+                          </div>
         								</form>
       								</div>
   									</div>
@@ -126,23 +140,52 @@
               return;
             }
             
-            firebase.auth().onAuthStateChanged(function (user) {
+            firebase.auth().onAuthStateChanged(function (user) {//makes sure they are signed in
               if (user) {//if we are signed in
-                window.fireApp.addArticle({
-                  articleText: articleText,
-                  articleTitle: articleTitle,
-                  author: author,
-                  movieTitle: "Generic Movie",
-                  movieGenre: "unknown",
-                  movieYear: "unknown",
-                  userUID: user.uid,
-                  dateCreated: date
+
+                // var mTitle = "";
+                // var mGenres = [];
+                // var mRelease = "";
+                // var mTagline = "";
+                // var mRating = "";
+                // var mPoster = "";
+
+                $.ajax({
+                  url: "https://api.themoviedb.org/3/movie/" + movieID + "?api_key=3695836366d96b2e76475a778f85850f", //movieID is global declaration
+                  type: "GET",
+                  success: function(result) {     
+                    var genres = [];
+                    // mTitle = result.title;
+                    // mRelease = result.release_date;
+                    // mTagline = result.tagline;
+                    // mRating = result.vote_average;
+                    // mPoster = "http://image.tmdb.org/t/p/w185" + result.poster_path;
+                    for(var i = 0; i < result.genres.length; i++){
+                      genres.push(result.genres[i].name);
+                    }
+
+                    window.fireApp.addArticle({
+                      articleText: articleText,
+                      articleTitle: articleTitle,
+                      author: author,
+                      movieTitle: result.title,
+                      movieGenres: genres,
+                      movieReleaseDate: result.release_date,
+                      movieTagline: result.tagline,
+                      movieRating: result.vote_average,
+                      posterURL: "http://image.tmdb.org/t/p/w185" + result.poster_path,
+                      userUID: user.uid,
+                      dateCreated: date
+                    });
+                    
+                    alert('success');
+                    $('input[name="articleTitle"]').val('');
+                    $('input[name="author"]').val('');
+                    $('textarea').val('');
+                    $("#query").val('');
+                  } 
                 });
-                
-                alert('success');
-                $('input[name="articleTitle"]').val('');
-                $('input[name="author"]').val('');
-                $('textarea').val('');
+
               }
             });
             
@@ -163,6 +206,44 @@
             }
             return true;
           }
+
+          $(document).on('keyup', function(){
+            if($("#query").is(":focus") && $("#query").val().length > 0){
+              getSuggestions($("#query").val());
+            }
+          });
+
+          function getSuggestions(query){
+            $.ajax({
+              url: "https://api.themoviedb.org/3/search/movie?api_key=3695836366d96b2e76475a778f85850f&language=en-US&query=" +
+              query + "&page=1&include_adult=true",
+              type: "GET",
+              success: function(result) {
+                var suggestions = result.results.slice(0, 3);
+                //console.log(suggestions);
+                $('#movieSuggestions ul').html('');
+                for(var i = 0; i < suggestions.length; i++){
+                  $('#movieSuggestions ul').append('<li>' + 
+                                '<span class="movieTitle">' + suggestions[i].title + '</span>' + 
+                                '<img class="moviePoster" src="http://image.tmdb.org/t/p/w185' + suggestions[i].poster_path + '" />' +
+                                '<span class="movieYear">(' + suggestions[i].release_date.split('-')[0] + ')</span>' +
+                                '<span class="movieId" style="display: none">' + suggestions[i].id + '</span>' +
+                              '</li>');
+                }
+              } 
+            });
+          }
+
+          var movieID = 0;
+
+          $(document).on('click', '#movieSuggestions ul li', function() {
+            var title = $(this).children('.movieTitle').html();
+            var id = $(this).children('.movieId').html();
+            $("#query").val(title);
+            $('#movieSuggestions ul').html('');
+            movieID = id;
+            // console.log(movieID);
+          });
 
 				});
 			</script>
