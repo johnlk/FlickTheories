@@ -95,9 +95,17 @@
         $(document).ready(function () {
           
           firebase.auth().onAuthStateChanged(function (user) {
-            if (!user) {//if we are already signed in
+            if (!user) {
               window.location.replace('login.html');
             }
+
+            //want to replace with cloud function call
+            var uid = "URiRTmp97VhR1mU7Gss2ACmep9J3";
+
+            if(user.uid != uid){
+              window.location.replace('login.html');
+            }
+
           });
           
           $('#logout').on('click', function(){
