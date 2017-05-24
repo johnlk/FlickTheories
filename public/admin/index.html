@@ -86,26 +86,23 @@
 			  firebase.initializeApp(config);
 			</script>
 			<script type="text/javascript">
-        $(document).ready(function () {
-          
-          firebase.auth().onAuthStateChanged(function (user) {
-            if (!user) {
-              window.location.replace('login.html');
-            }
+		        $(document).ready(function () {
+		          
+		          firebase.auth().onAuthStateChanged(function (user) {
+		            if (!user) {
+		              window.location.replace('login.html');
+		            }
 
-            //want to replace with cloud function call
-            var uid = "URiRTmp97VhR1mU7Gss2ACmep9J3";
+		            if(!window.fireApp.isAdministrator(user.uid)){
+					   	window.location.replace('login.html');
+					}
 
-            if(user.uid != uid){
-              window.location.replace('login.html');
-            }
-
-          });
-          
-          $('#logout').on('click', function(){
-            window.fireApp.signOut();
-            window.location.replace('login.html');
-          });
+		          });
+		          
+		          $('#logout').on('click', function(){
+		            window.fireApp.signOut();
+		            window.location.replace('login.html');
+		          });
           
 
 				});

@@ -106,10 +106,7 @@
               window.location.replace('login.html');
             }
 
-            //want to replace with cloud function call
-            var uid = "URiRTmp97VhR1mU7Gss2ACmep9J3";
-
-            if(user.uid != uid){
+            if(!window.fireApp.isAdministrator(user.uid)){
               window.location.replace('login.html');
             }
 

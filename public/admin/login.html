@@ -79,21 +79,18 @@
 			  firebase.initializeApp(config);
 			</script>
 			<script type="text/javascript">
-        $(document).ready(function () {
+		        $(document).ready(function () {
 
-          firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {//if we are already signed in
+			        firebase.auth().onAuthStateChanged(function (user) {
+			          if (user) {//if we are already signed in
 
-            	//want to replace with cloud function call
-            	var uid = "URiRTmp97VhR1mU7Gss2ACmep9J3";
-
-            	if(user.uid == uid){
-              		window.location.replace('index.html');
-            	}else{
-            		alert("you don't have admin access");
-            	}
-            }
-          });
+			            if(window.fireApp.isAdministrator(user.uid)){
+			            	window.location.replace('index.html');
+			            }else{
+			            	alert("you don't have admin access");
+			            }
+			          }
+			        });
 
 					$(document).on('keyup', function(e){
 						if(e.keyCode == 13){
