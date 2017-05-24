@@ -67,43 +67,8 @@
 											</tr>
 										</thead>
 										<tbody>
-											<!-- <tr>
-								  			<td>Conjuring</td>
-												<td>Horror</td>
-												<td>2013</td>
-											</tr>
-											<tr>
-												<td>Dark Knight</td>
-												<td>Action, Thriller</td>
-												<td>2011</td>
-											</tr>
-											<tr>
-												<td>Conjuring</td>
-												<td>Horror</td>
-												<td>2013</td>
-											</tr>
-											<tr>
-												<td>Dark Knight</td>
-												<td>Action, Thriller</td>
-												<td>2011</td>
-											</tr>
-											<tr>
-												<td>Conjuring</td>
-												<td>Horror</td>
-												<td>2013</td>
-											</tr>
-											<tr>
-												<td>Dark Knight</td>
-												<td>Action, Thriller</td>
-												<td>2011</td>
-											</tr> -->
+											<!-- To Be filled out by JS -->
 										</tbody>
-										<!--<tfoot>-->
-											<!--	<tr>-->
-											<!--		<td colspan="2"></td>-->
-											<!--		<td>100.00</td>-->
-											<!--	</tr>-->
-										<!--</tfoot>-->
 										</table>
 									</div>
 									
@@ -269,10 +234,10 @@
 										'<th>' + result[key].tagline + '</th>' +
 										'<th>' + result[key].genres.join(', ') + '</th>' +
 										'<th>' + result[key].releaseDate.split('-')[0] + '</th>' +
-										'<th>' + result[key].averageRating.substring(0, 4) + '</th>' +
+										'<th>' + result[key].averageRating.toFixed(1) + '</th>' +
 									'</tr>');
 	                  		}
-	                  	}                  	
+	                  	}
 	                  }
 	              	});
 
