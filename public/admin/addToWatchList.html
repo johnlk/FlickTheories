@@ -124,12 +124,12 @@
           $('input[name="submit"]').on('click', function(){            
             
             firebase.auth().onAuthStateChanged(function (user) {//makes sure they are signed in
-              if (user) {//if we are signed in
+              if (user && movieID != 0) {//if we are signed in
 
                 $.ajax({
                   url: "https://api.themoviedb.org/3/movie/" + movieID + "?api_key=3695836366d96b2e76475a778f85850f", //movieID is global declaration
                   type: "GET",
-                  success: function(result) {     
+                  success: function(result) {
                     var genres = [];
                     for(var i = 0; i < result.genres.length; i++){
                       genres.push(result.genres[i].name);
