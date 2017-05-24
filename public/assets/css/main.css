@@ -123,6 +123,16 @@
 		text-align: center;
 		margin-top: 5%;
 	}
+
+	#movieInfo img {
+		float: right;
+		margin-top: -237px;
+		padding-bottom: 4%;
+	}
+
+	#movieInfo p {
+		margin: 0 0 13px 8px;
+	}
 	
 	@-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)}
