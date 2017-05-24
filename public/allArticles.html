@@ -212,13 +212,12 @@
 	                  url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getAllArticles",
 	                  type: "GET",
 	                  success: function(result) {
-	                  	console.log(result);
 	                  	for(key in result){
 	                  		if(result.hasOwnProperty(key)){
 	                  			var dateUploaded = new Date(parseInt(result[key].dateCreated));
 	                  			$('.posts').append('<article><a href="./articlePage.html?movie=' + result[key].movieTitle + '" class="image">' +
 	                  				'<img src="' + result[key].posterURL + '" alt="' + result[key].movieTitle + '" /></a>' +
-									'<h3>' + result[key].movieTitle + '</h3>' +
+									'<h3>' + result[key].articleTitle + '</h3>' +
 									'<p>' + result[key].articleText.substring(0, 300) + '&hellip;</p>' +
 									'<p><strong>Uploaded</strong>: ' + dateUploaded.toString().split(' ')[1] + " " + 
 									dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
