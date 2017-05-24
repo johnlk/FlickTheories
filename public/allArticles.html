@@ -53,38 +53,15 @@
 										<h1>All Articles</h1>
 									</header>
 									<div class="posts">
-										<article>
+										<!-- <article>
 											<a href="#" class="image"><img src="https://lh3.googleusercontent.com/-Iqys4NB4Vh4/Vw9gP8q5afI/AAAAAAAADK4/5l4X-vstY8wHesVKcuWU9_QUQQHAjAjKACCo/s500-Ic42/oldy.jpg" alt="Old Boy" /></a>
 											<h3>Old Boy</h3>
 											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+											<p>Uploaded: May 13, 2017</p>
 											<ul class="actions">
 												<li><a href="#" class="button">More</a></li>
 											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTk0MTQ3NDQ4Ml5BMl5BanBnXkFtZTcwOTQ3OTQzMw@@._V1_UY1200_CR91,0,630,1200_AL_.jpg" alt="Borat" /></a>
-											<h3>Borat</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_.jpg" alt="Green Mile" /></a>
-											<h3>Green Mile</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="http://mediafiles.cineplex.com/Events/fbff/fightclub.jpg" alt="Fight Club" /></a>
-											<h3>Fight Club</h3>
-											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
-											</ul>
-										</article>
+										</article> -->										
 									</div>
 								</section>
 
@@ -226,6 +203,35 @@
 			  firebase.initializeApp(config);
 			</script>
 			<script src="assets/js/loginLogout.js"></script>
+
+			<script>
+				$(document).ready(function(){
+
+					$.ajax({
+	                  url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getAllArticles",
+	                  type: "GET",
+	                  success: function(result) {  
+	                  	console.log(result);
+	                  	for(key in result){
+	                  		if(result.hasOwnProperty(key)){
+	                  			var dateUploaded = new Date(parseInt(result[key].dateCreated));
+	                  			$('.posts').append('<article><a href="#" class="image">' +
+	                  				'<img src="' + result[key].posterURL + '" alt="' + result[key].movieTitle + '" /></a>' +
+									'<h3>' + result[key].movieTitle + '</h3>' +
+									'<p>' + result[key].articleText.substring(0, 300) + '&hellip;</p>' +
+									'<p>Uploaded: ' + dateUploaded.toString().split(' ')[1] + " " + 
+									dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
+									'<ul class="actions">' +
+									'	<li><a href="#" class="button">More</a></li>' +
+									'</ul>' +
+								'</article>');
+	                  		}
+	                  	}
+	                  }
+	              	});
+
+				});
+			</script>
 
 	</body>
 </html>
