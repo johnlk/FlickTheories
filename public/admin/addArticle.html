@@ -143,7 +143,8 @@
             
             var date = new Date().getTime() + "";
             
-            if(!isFilled($('input[name="articleTitle"]')) || !isFilled($('input[name="author"]')) || !isFilled($('textarea'))){
+            if(!isFilled($('input[name="articleTitle"]')) || !isFilled($('input[name="author"]'))
+             || !isFilled($('textarea')) || !isFilled($('#query'))){
               return;
             }
             
