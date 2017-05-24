@@ -58,14 +58,15 @@
 											<h3>Old Boy</h3>
 											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
 											<p>Uploaded: May 13, 2017</p>
+											<p style="margin:-15px 0 17px 0;"><strong>Author</strong>: John Kuhn</p>
 											<ul class="actions">
 												<li><a href="#" class="button">More</a></li>
 											</ul>
-										</article> -->										
+										</article>	 -->									
 									</div>
 								</section>
 
-								<ul class="pagination">
+								<!-- <ul class="pagination">
 									<li><span class="button disabled">Prev</span></li>
 									<li><a href="#" class="page active">1</a></li>
 									<li><a href="#" class="page">2</a></li>
@@ -75,7 +76,7 @@
 									<li><a href="#" class="page">9</a></li>
 									<li><a href="#" class="page">10</a></li>
 									<li><a href="#" class="button">Next</a></li>
-								</ul>
+								</ul> -->
 
 						</div>
 					</div>
@@ -219,8 +220,9 @@
 	                  				'<img src="' + result[key].posterURL + '" alt="' + result[key].movieTitle + '" /></a>' +
 									'<h3>' + result[key].movieTitle + '</h3>' +
 									'<p>' + result[key].articleText.substring(0, 300) + '&hellip;</p>' +
-									'<p>Uploaded: ' + dateUploaded.toString().split(' ')[1] + " " + 
+									'<p><strong>Uploaded</strong>: ' + dateUploaded.toString().split(' ')[1] + " " + 
 									dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
+									'<p style="margin:-15px 0 17px 0;"><strong>Author</strong>: ' + result[key].author + '</p>' +
 									'<ul class="actions">' +
 									'	<li><a href="#" class="button">More</a></li>' +
 									'</ul>' +
