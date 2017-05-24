@@ -211,7 +211,7 @@
 					$.ajax({
 	                  url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getAllArticles",
 	                  type: "GET",
-	                  success: function(result) {  
+	                  success: function(result) {
 	                  	console.log(result);
 	                  	for(key in result){
 	                  		if(result.hasOwnProperty(key)){
@@ -224,7 +224,7 @@
 									dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
 									'<p style="margin:-15px 0 17px 0;"><strong>Author</strong>: ' + result[key].author + '</p>' +
 									'<ul class="actions">' +
-									'	<li><a href="#" class="button">More</a></li>' +
+									'<li><a href="./articlePage.html?movie=' + result[key].movieTitle + '" class="button">More</a></li>' +
 									'</ul>' +
 								'</article>');
 	                  		}
