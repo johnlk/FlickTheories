@@ -5,13 +5,12 @@ admin.initializeApp(functions.config().firebase);
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
 
 //returns all articles
 exports.getAllArticles = functions.https.onRequest((req, res) => {
+
+	res.set('Access-Control-Allow-Origin', "*");
+  	res.set('Access-Control-Allow-Methods', 'GET, POST');
 
 	admin.database().ref('/articles').orderByChild('dateCreated').on('value', function(snapshot){
 		res.send(snapshot.val());
@@ -22,6 +21,9 @@ exports.getAllArticles = functions.https.onRequest((req, res) => {
 //works just fine!
 //?limit=10
 exports.getArticlesUpTo = functions.https.onRequest((req, res) => {
+
+	res.set('Access-Control-Allow-Origin', "*");
+  	res.set('Access-Control-Allow-Methods', 'GET, POST');
 
 	var limit = parseInt(req.query.limit);
 
@@ -35,6 +37,9 @@ exports.getArticlesUpTo = functions.https.onRequest((req, res) => {
 //needs fixing
 exports.getArticleRange = functions.https.onRequest((req, res) => {
 
+	res.set('Access-Control-Allow-Origin', "*");
+  	res.set('Access-Control-Allow-Methods', 'GET, POST');
+
 	var lowerLimit = parseInt(req.query.lower);
 	var upperLimit = parseInt(req.query.upper);
 
@@ -47,6 +52,9 @@ exports.getArticleRange = functions.https.onRequest((req, res) => {
 //working great
 //user ?title= or ?movie=
 exports.getArticleBy = functions.https.onRequest((req, res) => {
+
+	res.set('Access-Control-Allow-Origin', "*");
+  	res.set('Access-Control-Allow-Methods', 'GET, POST');
 
 	var title = req.query.title;
 	var movie = req.query.movie;
@@ -73,6 +81,9 @@ exports.getArticleBy = functions.https.onRequest((req, res) => {
 //works
 exports.getMovieList = functions.https.onRequest((req, res) => {
 
+	res.set('Access-Control-Allow-Origin', "*");
+  	res.set('Access-Control-Allow-Methods', 'GET, POST');
+
 	admin.database().ref('/movieList').on('value', function(snapshot) {
 		res.send(snapshot.val());
 	});
@@ -81,6 +92,9 @@ exports.getMovieList = functions.https.onRequest((req, res) => {
 
 //works
 exports.getMovieListUpTo = functions.https.onRequest((req, res) => {
+
+	res.set('Access-Control-Allow-Origin', "*");
+  	res.set('Access-Control-Allow-Methods', 'GET, POST');
 
 	var limit = parseInt(req.query.limit);
 
@@ -92,6 +106,9 @@ exports.getMovieListUpTo = functions.https.onRequest((req, res) => {
 
 //works
 exports.getAdmins = functions.https.onRequest((req, res) => {
+
+	res.set('Access-Control-Allow-Origin', "*");
+  	res.set('Access-Control-Allow-Methods', 'GET, POST');
 
 	admin.database().ref('/admins').on('value', function(snapshot) {
 		res.send(snapshot.val());
