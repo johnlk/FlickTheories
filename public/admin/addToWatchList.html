@@ -136,7 +136,7 @@
                     }
 
                     window.fireApp.addToMovieList({
-                      averageRating: result.vote_average + "",
+                      averageRating: result.vote_average,
                       genres: genres,
                       releaseDate: result.release_date,
                       tagline: result.tagline,
@@ -145,6 +145,7 @@
                     
                     alert('success');
                     $("#query").val('');
+                    movieId = 0;
                   } 
                 });
 
