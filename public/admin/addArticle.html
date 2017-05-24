@@ -139,7 +139,7 @@
             
             var articleTitle = $('input[name="articleTitle"]').val();
             var author = $('input[name="author"]').val();
-            var articleText = $('textarea').val();
+            var articleText = formatText($('textarea').val());
             
             var date = new Date().getTime() + "";
             
@@ -158,6 +158,8 @@
                     for(var i = 0; i < result.genres.length; i++){
                       genres.push(result.genres[i].name);
                     }
+
+                    console.log(articleText);
 
                     window.fireApp.addArticle({
                       articleText: articleText,
@@ -185,6 +187,18 @@
             });
             
           });
+
+          function formatText(rawText){
+            var paragraphs = rawText.split('\n');
+            var finalString = "";
+            for(var i = 1; i < paragraphs.length; i++){
+              finalString += paragraphs[i] + "<br>";
+            }
+            if(finalString.length > 0){
+              return finalString;
+            }
+            return rawText;
+          }
           
           function isFilled(element){
             var text = element.val();
