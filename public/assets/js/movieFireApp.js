@@ -24,6 +24,14 @@ FireApp.prototype.addToMovieList = function(obj) {
   this.database.ref('movieList').push(obj);
 };
 
+FireApp.prototype.isAdministrator = function(uid) {
+  var admins = ["TFQHoVg0RqYuUoMEMLgN9S7hUBc2", "URiRTmp97VhR1mU7Gss2ACmep9J3", "mkiXn1E0iAaWuHASR7PlZwiLhlz2"];
+  // this.database.ref('/admins').on('value', function(snapshot) {
+  //   admins = snapshot.val().uids; //[]
+  // });
+  return admins.indexOf(uid) != -1;
+};
+
 FireApp.prototype.checkSetup = function() {
   if (!window.firebase || !(firebase.app instanceof Function) || !window.config) {
     window.alert('You have not configured and imported the Firebase SDK. ' +
