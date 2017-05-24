@@ -257,52 +257,25 @@
 
 			<script>
 				$(document).ready(function(){
-					//alert('working');
-					// $.ajax({
-					//      url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieList",
-					//      dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
-					//      // data: {
-					//      // 	format: "json"
-					//      // },
-					//      success: function(response){
-					//         console.log(response);
-					//      },
-					//      error: function(error){
-					//      	console.log(error);
-					//      }      
-					// });
 
-					jQuery.support.cors = true;
 					$.ajax({
-					    url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieList/",
-					    type: "GET",
-					    dataType: "json",
-            			crossDomain: true,
-					    success: function(data) {
-					    	console.log(data);
-					    },
-					    error: function(error) {
-					    	console.log(error);
-					    }
-					});
+	                  url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieListUpTo?limit=10",//limit to 10
+	                  type: "GET",
+	                  success: function(result) {  
+	                  	for(key in result){
+	                  		if(result.hasOwnProperty(key)){
+	                  			$('.table-wrapper tbody').append('<tr>' +
+										'<th>' + result[key].title + '</th>' +
+										'<th>' + result[key].tagline + '</th>' +
+										'<th>' + result[key].genres.join(', ') + '</th>' +
+										'<th>' + result[key].releaseDate.split('-')[0] + '</th>' +
+										'<th>' + result[key].averageRating.substring(0, 4) + '</th>' +
+									'</tr>');
+	                  		}
+	                  	}                  	
+	                  }
+	              	});
 
-					// $.getJSON( "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieList", function( data ) {
-					// 	console.log(data);
-					// });
-
-					// $.ajax({
-		   //              url: 'https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieList',
-		   //              dataType: 'jsonp',
-		   //              jsonp: 'callback',
-		   //              jsonpCallback: 'jsonpCallback',
-		   //              success: function(){
-		   //                  console.log("success");
-		   //              }
-		   //          });
-
-					// function jsonpCallback(data){
-					// 	console.log(data);
-				 //    }
 				});
 			</script>
 
