@@ -11,18 +11,6 @@
     
     <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/4.0.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/4.0.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/4.0.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/4.0.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/4.0.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
   </head>
   <body>
 
@@ -61,10 +49,11 @@
 
               <!-- Banner -->
                 <section id="banner">
-                  <div class="content">
+                  <!-- <div class="content">
                     <header>
-                      <h1>Leon</h1>
-                      <p>1997 Action</p>
+                      <h1>Leon The Plant Lover</h1>
+                      <p><strong>Uploaded: </strong>May 23, 1871</p>
+                      <p><strong>Author: </strong> Johnny Queie</p>
                     </header>
                     <p>A movie with a rather unique opening, Leon opens with a hit scene with our
                     main character Leon taking care of business finishing off 15 men and instilling
@@ -75,49 +64,24 @@
                     </ul>
                   </div>
                   <span class="image object">
-                    <!-- <img src="images/pic10.jpg" alt="" /> -->
                     <img src="https://20ui41tp7v127j03rcnp97oh-wpengine.netdna-ssl.com/wp-content/uploads/2016/01/waters_leon.jpg" alt="Leon" />
-                  </span>
+                  </span> -->
                 </section>
 
               <!-- Section -->
                 <section>
                   <header class="major">
-                    <h2>Other Articles</h2>
+                    <h2>Most Recent Articles</h2>
                   </header>
                   <div class="posts">
-                    <article>
+                    <!-- <article>
                       <a href="#" class="image"><img src="https://lh3.googleusercontent.com/-Iqys4NB4Vh4/Vw9gP8q5afI/AAAAAAAADK4/5l4X-vstY8wHesVKcuWU9_QUQQHAjAjKACCo/s500-Ic42/oldy.jpg" alt="Old Boy" /></a>
                       <h3>Old Boy</h3>
                       <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
                       <ul class="actions">
                         <li><a href="#" class="button">More</a></li>
                       </ul>
-                    </article>
-                    <article>
-                      <a href="#" class="image"><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTk0MTQ3NDQ4Ml5BMl5BanBnXkFtZTcwOTQ3OTQzMw@@._V1_UY1200_CR91,0,630,1200_AL_.jpg" alt="Borat" /></a>
-                      <h3>Borat</h3>
-                      <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                      <ul class="actions">
-                        <li><a href="#" class="button">More</a></li>
-                      </ul>
-                    </article>
-                    <article>
-                      <a href="#" class="image"><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_.jpg" alt="Green Mile" /></a>
-                      <h3>Green Mile</h3>
-                      <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                      <ul class="actions">
-                        <li><a href="#" class="button">More</a></li>
-                      </ul>
-                    </article>
-                    <article>
-                      <a href="#" class="image"><img src="http://mediafiles.cineplex.com/Events/fbff/fightclub.jpg" alt="Fight Club" /></a>
-                      <h3>Fight Club</h3>
-                      <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-                      <ul class="actions">
-                        <li><a href="#" class="button">More</a></li>
-                      </ul>
-                    </article>
+                    </article> -->
                   </div>
                 </section>
 
@@ -253,27 +217,61 @@
       </script>
       <script src="./assets/js/loginLogout.js"></script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('data', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      <script type="text/javascript">
+        $(document).ready(function(){
 
-        // try {
-        //   let app = firebase.app();
-        //   let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        //   document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        // } catch (e) {
-        //   console.error(e);
-        //   document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        // }
-      });
-    </script>
+          //might later change this to highlighted article or something
+          $.ajax({
+            url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getArticlesUpTo?limit=1",
+            type: "GET",
+            success: function(result) {
+              for(key in result){
+                if(result.hasOwnProperty(key)){
+                  var dateUploaded = new Date(parseInt(result[key].dateCreated));
+                  $('#banner').append('<div class="content">' +
+                    '<header>' +
+                      '<h1>' + result[key].articleTitle + '</h1>' +
+                      '<p><strong>Uploaded: </strong>' + dateUploaded.toString().split(' ')[1] + " " + 
+                  dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
+                      '<p><strong>Author: </strong>' + result[key].author + '</p>' +
+                    '</header>' +
+                    '<p>' + result[key].articleText.substring(0, 300) + '&hellip;</p>' +
+                    '<ul class="actions">' +
+                      '<li><a href="./articlePage.html?movie=' + result[key].movieTitle + '" class="button big">Full Article</a></li>' +
+                    '</ul>' +
+                  '</div>' +
+                  '<span class="image object">' +
+                    '<img src="' + result[key].posterURL + '" alt="' + result[key].articleTitle + '" />' +
+                  '</span>');
+                }
+              }
+            }
+          });
+
+          $.ajax({
+            url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getArticlesUpTo?limit=3",
+            type: "GET",
+            success: function(result) {
+              for(key in result){
+                if(result.hasOwnProperty(key)){
+                  var dateUploaded = new Date(parseInt(result[key].dateCreated));
+                  $('.posts').append('<article><a href="./articlePage.html?movie=' + result[key].movieTitle + '" class="image">' +
+                    '<img src="' + result[key].posterURL + '" alt="' + result[key].movieTitle + '" /></a>' +
+                    '<h3>' + result[key].articleTitle + '</h3>' +
+                    '<p>' + result[key].articleText.substring(0, 300) + '&hellip;</p>' +
+                    '<p><strong>Uploaded</strong>: ' + dateUploaded.toString().split(' ')[1] + " " + 
+                    dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
+                    '<p style="margin:-15px 0 17px 0;"><strong>Author</strong>: ' + result[key].author + '</p>' +
+                    '<ul class="actions">' +
+                    '<li><a href="./articlePage.html?movie=' + result[key].movieTitle + '" class="button">More</a></li>' +
+                    '</ul>' +
+                  '</article>');
+                }
+              }
+            }
+          });
+          
+        });
+      </script>
   </body>
 </html>
