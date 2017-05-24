@@ -3440,7 +3440,7 @@
 
 				.posts article .image img {
 					display: block;
-					width: 100%;
+					width: 50%;
 				}
 
 		@media screen and (min-width: 1681px) {
@@ -4001,11 +4001,8 @@
 				-webkit-object-position: center;
 				-ms-object-position: center;
 				object-position: center;
-				width: 100%;
-				max-width: 430px;
-        max-height: 600px;
-        float: right;
-        margin-right: 17%;
+		        float: right;
+		        margin-right: 17%;
 			}
 
 		@media screen and (orientation: portrait) {
