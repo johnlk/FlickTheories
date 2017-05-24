@@ -49,48 +49,31 @@
 
 							<!-- Banner -->
 								<section id="banner">
-									<div class="content">
+									<!-- <div class="content">
 										<header>
 											<h1>Leon</h1>
-											<p>1997 Action</p>
+											<p><strong>Uploaded: </strong>May 23, 2017</p>
+											<p><strong>Author: </strong>John Kuhn</p>
 										</header>
-										<p>A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked.<br /><br />	A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked.<br /><br />A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked.<br /><br />	A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked. A movie with a rather unique opening, Leon opens with a hit scene with our
-										main character Leon taking care of business finishing off 15 men and instilling
-										fear into the heart of an emeny gang leader, as his contract had asked.</p>
+										<p>
+										Text here.
+										</p>
 									</div>
 									<span class="image object">
 										<img src="https://20ui41tp7v127j03rcnp97oh-wpengine.netdna-ssl.com/wp-content/uploads/2016/01/waters_leon.jpg" alt="Leon" />
-									</span>
+									</span> -->
+								</section>
+
+							<!-- Movie Info -->
+								<section id="movieInfo">
+									<!-- <div class="content">
+										<h1>Leon the Professional</h1>
+										<p><strong>Tagline: </strong>Have to Hire a pro!</p>
+										<p><strong>Release Date: </strong>May 23, 2017</p>
+										<p><strong>Average Rating: </strong>7.3</p>
+										<p><strong>Genres: </strong>Action, Comedy</p>
+										<img src="http://image.tmdb.org/t/p/w185/gE8S02QUOhVnAmYu4tcrBlMTujz.jpg" />
+									</div> -->
 								</section>
 
 						</div>
@@ -224,6 +207,37 @@
 			  firebase.initializeApp(config);
 			</script>
 			<script src="assets/js/loginLogout.js"></script>
+
+			<script>
+			$(document).ready(function(){
+
+				$.ajax({
+	                url: 'https://us-central1-moviethoughts-d188d.cloudfunctions.net/getArticleBy?' + 
+	                	window.location.href.split('?')[1],
+	                type: "GET",
+	                success: function(result) {
+						var dateUploaded = new Date(parseInt(result.dateCreated));
+						$('#banner').append('<div class="content">' +
+										'<header>' +
+											'<h1>' + result.articleTitle + '</h1>' +
+											'<p><strong>Uploaded: </strong>' + dateUploaded.toString().split(' ')[1] + " " + 
+									dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
+											'<p><strong>Author: </strong>' + result.author + '</p>' +
+										'</header>' +
+										'<p>' + result.articleText + '</p>' +
+									'</div>');
+						$('#movieInfo').append('<div class="content">' +
+										'<h1>' + result.movieTitle + '</h1>' +
+										'<p><strong>Tagline: </strong>' + result.movieTagline + '</p>' +
+										'<p><strong>Release Date: </strong>May 23, 2017</p>' +
+										'<p><strong>Average Rating: </strong>' + result.movieRating.toFixed(2) + '</p>' +
+										'<p><strong>Genres: </strong>' + result.movieGenres.join(', ') + '</p>' +
+										'<img src="' + result.posterURL + '" />' +
+									'</div>');
+	                }
+	            });
+			});
+			</script>
 			
 	</body>
 </html>
