@@ -163,7 +163,7 @@
           function getSuggestions(query){
             $.ajax({
               url: "https://api.themoviedb.org/3/search/movie?api_key=3695836366d96b2e76475a778f85850f&language=en-US&query=" +
-              query + "&page=1&include_adult=true",
+              query + "&page=1&include_adult=false",
               type: "GET",
               success: function(result) {
                 var suggestions = result.results.slice(0, 3);
