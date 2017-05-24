@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Movie Thoughts Blog by John Kuhn</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+
+		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	</head>
+	<body>
+  
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+						  
+						  <div class="loginButtons">
+								<ul class="actions">
+									<li><input id="logout" name="logout" type="submit" value="Logout" /></li>
+								</ul>
+						  </div>
+						  
+
+							<!-- Header -->
+								<header id="header">
+									<span><strong>Movie</strong> Thoughts</span>
+									<h3 class="pageDeclaration">Add to Watch List</h3>
+								</header>
+								
+							<!-- Section -->
+  							<section>
+  							  <div class="addMovieToList">
+  							    <h3>New Movie to Watch and Write About</h3>
+    									<div id="search" style="margin-bottom: -63px; width: 50%;">
+                        <form method="post" onsubmit="return false">
+                          <input type="text" name="query" id="query" placeholder="Movie Search" />
+                          <div id="movieSuggestions">
+                            <ul>
+                              <!-- TO be populated by JS -->
+                            </ul>
+                          </div>
+                        </form>
+                      </div>
+                      <ul class="actions" style="margin-left: 53%;">
+                        <li><input name="submit" type="submit" value="Add To Watch List" class="special" /></li>
+                      </ul>
+    								</div>
+  							</section>
+
+              <!-- Sidebar -->
+                <div id="sidebar">
+                  <div class="inner">
+
+                    <!-- Menu -->
+                      <nav id="menu">
+                        <header class="major">
+                          <h2>Menu</h2>
+                        </header>
+                        <ul>
+                          <li><a href="./index.html">Home</a></li>
+                          <li><a href="./addArticle.html">Write an Article</a></li>
+                          <li><a href="./addToWatchList.html">Add Movie to Watch List</a></li>
+                        </ul>
+                      </nav>
+
+                  </div>
+                </div>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+			<script src="../assets/js/movieFireApp.js"></script>
+			<script>
+			  // Initialize Firebase
+			  var config = {
+			    apiKey: "AIzaSyCwNaBXbDWunUuT5HuMzxgQRNF0ByOiq04",
+			    authDomain: "moviethoughts-d188d.firebaseapp.com",
+			    databaseURL: "https://moviethoughts-d188d.firebaseio.com",
+			    projectId: "moviethoughts-d188d",
+			    storageBucket: "moviethoughts-d188d.appspot.com",
+			    messagingSenderId: "923578276783"
+			  };
+			  firebase.initializeApp(config);
+			</script>
+			<script type="text/javascript">
+        $(document).ready(function () {
+          
+          firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {
+              window.location.replace('login.html');
+            }
+
+            //want to replace with cloud function call
+            var uid = "URiRTmp97VhR1mU7Gss2ACmep9J3";
+
+            if(user.uid != uid){
+              window.location.replace('login.html');
+            }
+
+          });
+          
+          $('#logout').on('click', function(){
+            console.log('eyah');
+            window.fireApp.signOut();
+            window.location.replace('login.html');
+          });       
+
+          $('input[name="submit"]').on('click', function(){            
+            
+            firebase.auth().onAuthStateChanged(function (user) {//makes sure they are signed in
+              if (user) {//if we are signed in
+
+                $.ajax({
+                  url: "https://api.themoviedb.org/3/movie/" + movieID + "?api_key=3695836366d96b2e76475a778f85850f", //movieID is global declaration
+                  type: "GET",
+                  success: function(result) {     
+                    var genres = [];
+                    for(var i = 0; i < result.genres.length; i++){
+                      genres.push(result.genres[i].name);
+                    }
+
+                    window.fireApp.addToMovieList({
+                      averageRating: result.vote_average + "",
+                      genres: genres,
+                      releaseDate: result.release_date,
+                      tagline: result.tagline,
+                      title: result.title
+                    });
+                    
+                    alert('success');
+                    $("#query").val('');
+                  } 
+                });
+
+              }
+            });
+            
+          });   
+
+          $(document).on('keyup', function(){
+            if($("#query").is(":focus") && $("#query").val().length > 0){
+              getSuggestions($("#query").val());
+            }
+          });
+
+          function getSuggestions(query){
+            $.ajax({
+              url: "https://api.themoviedb.org/3/search/movie?api_key=3695836366d96b2e76475a778f85850f&language=en-US&query=" +
+              query + "&page=1&include_adult=true",
+              type: "GET",
+              success: function(result) {
+                var suggestions = result.results.slice(0, 3);
+                $('#movieSuggestions ul').html('');
+                for(var i = 0; i < suggestions.length; i++){
+                  $('#movieSuggestions ul').append('<li>' + 
+                                '<span class="movieTitle">' + suggestions[i].title + '</span>' + 
+                                '<img class="moviePoster" src="http://image.tmdb.org/t/p/w185' + suggestions[i].poster_path + '" />' +
+                                '<span class="movieYear">(' + suggestions[i].release_date.split('-')[0] + ')</span>' +
+                                '<span class="movieId" style="display: none">' + suggestions[i].id + '</span>' +
+                              '</li>');
+                }
+              } 
+            });
+          }
+
+          var movieID = 0;
+
+          $(document).on('click', '#movieSuggestions ul li', function() {
+            var title = $(this).children('.movieTitle').html();
+            var id = $(this).children('.movieId').html();
+            $("#query").val(title);
+            $('#movieSuggestions ul').html('');
+            movieID = id;
+          });
+
+				});
+			</script>
+
+	</body>
+</html>
