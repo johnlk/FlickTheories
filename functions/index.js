@@ -27,7 +27,7 @@ exports.getArticlesUpTo = functions.https.onRequest((req, res) => {
 
 	var limit = parseInt(req.query.limit);
 
-	admin.database().ref('/articles').limitToFirst(limit).on('value', function(snapshot){
+	admin.database().ref('/articles').orderByChild('dateCreated').limitToFirst(limit).on('value', function(snapshot){
 		res.send(snapshot.val());
 	});
 
