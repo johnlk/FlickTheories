@@ -118,6 +118,11 @@
 		cursor: pointer;
 		background-color: lightgray;
 	}
+
+	.main-center {
+		text-align: center;
+		margin-top: 5%;
+	}
 	
 	@-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)}
