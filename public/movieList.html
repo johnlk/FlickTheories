@@ -115,11 +115,11 @@
 	                  	for(key in result){
 	                  		if(result.hasOwnProperty(key)){
 	                  			$('.table-wrapper tbody').append('<tr>' +
-										'<th>' + result[key].title + '</th>' +
-										'<th>' + result[key].tagline + '</th>' +
-										'<th>' + result[key].genres.join(', ') + '</th>' +
-										'<th>' + result[key].releaseDate.split('-')[0] + '</th>' +
-										'<th>' + result[key].averageRating.toFixed(1) + '</th>' +
+										'<td>' + result[key].title + '</td>' +
+										'<td>' + result[key].tagline + '</td>' +
+										'<td>' + result[key].genres.join(', ') + '</td>' +
+										'<td>' + result[key].releaseDate.split('-')[0] + '</td>' +
+										'<td>' + result[key].averageRating.toFixed(1) + '</td>' +
 									'</tr>');
 	                  		}
 	                  	}
