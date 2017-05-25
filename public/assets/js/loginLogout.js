@@ -44,11 +44,6 @@ $(document).ready(function() {
               '<form onsubmit="return false">' +
                 '<div class="row uniform">' +
                   '<div class="12u 12u$(xsmall)">' +
-                    '<input id="newName" name="name" placeholder="Name" type="text" value="" required>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="row uniform">' +
-                  '<div class="12u 12u$(xsmall)">' +
                     '<input id="newEmail" name="email" placeholder="Email" type="email" value="" required>' +
                   '</div>' +
                 '</div>' +
