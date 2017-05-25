@@ -134,6 +134,10 @@
 	#movieInfo p {
 		margin: 0 0 13px 8px;
 	}
+
+	.x:hover {
+		cursor: pointer;
+	}
 	
 	@-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)}
