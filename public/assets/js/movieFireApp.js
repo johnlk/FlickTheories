@@ -24,6 +24,18 @@ FireApp.prototype.addToMovieList = function(obj) {
   this.database.ref('movieList').push(obj);
 };
 
+FireApp.prototype.removeFromMovieList = function(movieName) {
+  var that = this;
+  this.database.ref('/movieList').on('value', function(snapshot) {
+    var movies = snapshot.val();
+    for(key in movies){
+      if(movies.hasOwnProperty(key) && movies[key].title == movieName){
+        that.database.ref('/movieList/' + key).remove();
+      }
+    }
+  });
+};
+
 FireApp.prototype.isAdministrator = function(uid) {
   var admins = ["TFQHoVg0RqYuUoMEMLgN9S7hUBc2", "URiRTmp97VhR1mU7Gss2ACmep9J3", "mkiXn1E0iAaWuHASR7PlZwiLhlz2"];
   // this.database.ref('/admins').on('value', function(snapshot) {

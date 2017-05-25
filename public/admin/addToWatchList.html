@@ -54,6 +54,26 @@
     								</div>
   							</section>
 
+                <div class="table-wrapper">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Tagline</th>
+                        <th>Genres</th>
+                        <th>Year</th>
+                        <th>Rating</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- To Be filled out by JS -->
+                    </tbody>
+                    </table>
+                  </div>
+                  
+                </section>
+
               <!-- Sidebar -->
                 <div id="sidebar">
                   <div class="inner">
@@ -110,6 +130,30 @@
               window.location.replace('login.html');
             }
 
+          });
+
+          $.ajax({
+            url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieListUpTo?limit=10",//limit to 10
+            type: "GET",
+            success: function(result) {  
+              for(key in result){
+                if(result.hasOwnProperty(key)){
+                  $('.table-wrapper tbody').append('<tr>' +
+                    '<td>' + result[key].title + '</td>' +
+                    '<td>' + result[key].tagline + '</td>' +
+                    '<td>' + result[key].genres.join(', ') + '</td>' +
+                    '<td>' + result[key].releaseDate.split('-')[0] + '</td>' +
+                    '<td>' + result[key].averageRating.toFixed(1) + '</td>' +                    
+                    '<td><img class="x" style="width: 15px; height: 15px;" src="../assets/images/x.png" /></td>' +
+                  '</tr>');
+                }
+              }
+            }
+          });
+
+          $('body').on('click', '.x', function(){
+            var movieName = $(this).parent().parent().children('td').eq(0).html();
+            window.fireApp.removeFromMovieList(movieName);
           });
           
           $('#logout').on('click', function(){
