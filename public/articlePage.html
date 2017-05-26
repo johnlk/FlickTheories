@@ -81,7 +81,7 @@
 			$(document).ready(function(){
 
 				$.ajax({
-	                url: 'https://us-central1-moviethoughts-d188d.cloudfunctions.net/getArticleBy?' + 
+	                url: 'https://us-central1-moviethoughts-d188d.cloudfunctions.net/getArticleBy?' +
 	                	window.location.href.split('?')[1],
 	                type: "GET",
 	                success: function(result) {
@@ -90,7 +90,7 @@
 						$('#banner').append('<div class="content">' +
 										'<header>' +
 											'<h1>' + result.articleTitle + '</h1>' +
-											'<p><strong>Uploaded: </strong>' + dateUploaded.toString().split(' ')[1] + " " + 
+											'<p><strong>Uploaded: </strong>' + dateUploaded.toString().split(' ')[1] + " " +
 									dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
 											'<p><strong>Author: </strong>' + result.author + '</p>' +
 										'</header>' +

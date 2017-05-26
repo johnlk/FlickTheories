@@ -1106,8 +1106,20 @@
 	    margin: 2% 0 -3% 66%;
 	  }
 	}
+	
+	@media screen and (max-width: 790px) {
+	  #movieInfo img {
+  		height: 230px;
+  	}
+	}
+	
+	
 
 	@media screen and (max-width: 736px) {
+	  
+	  #movieInfo img {
+	    margin-top: -200px;
+  	}
 
 		.row > * {
 			padding: 0 0 0 1.5em;
@@ -1330,6 +1342,10 @@
 	  .loginButtons {
 	    margin: 2% 0 -3% 44%;
 	  }
+	  
+	  #movieInfo img {
+	    margin-top: -200px;
+  	}
 	}
 	
 	@media screen and (max-width: 570px) {
@@ -1339,6 +1355,11 @@
 	  
 	  .loginButtons {
 	    margin: 12% 0 -20% 25%;
+	  }
+	  
+	  #movieInfo img {
+	    margin-top: -100px;
+      height: 156px;
 	  }
 	}
 
