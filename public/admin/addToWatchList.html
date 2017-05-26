@@ -21,11 +21,12 @@
 					<div id="main">
 						<div class="inner">
 						  
-						  <div class="loginButtons">
-								<ul class="actions">
-									<li><input id="logout" name="logout" type="submit" value="Logout" /></li>
-								</ul>
-						  </div>						  
+						  <div class="welcomeBack">
+                Welcome <strong>Back!</strong>
+                <ul class="actions" style="display: inline-block; margin-left: 3%;">
+                  <li><input id="logout" type="submit" value="Logout" /></li>
+                </ul>
+              </div>
 
 							<!-- Header -->
 								<header id="header">
@@ -68,28 +69,7 @@
                     <tbody>
                       <!-- To Be filled out by JS -->
                     </tbody>
-                    </table>
-                  </div>
-                  
-                </section>
-
-              <!-- Sidebar -->
-                <div id="sidebar">
-                  <div class="inner">
-
-                    <!-- Menu -->
-                      <nav id="menu">
-                        <header class="major">
-                          <h2>Menu</h2>
-                        </header>
-                        <ul>
-                          <li><a href="./index.html">Home</a></li>
-                          <li><a href="./addArticle.html">Write an Article</a></li>
-                          <li><a href="./addToWatchList.html">Add Movie to Watch List</a></li>
-                        </ul>
-                      </nav>
-
-                  </div>
+                  </table>
                 </div>
 
 						</div>
@@ -134,7 +114,7 @@
           $.ajax({
             url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getMovieListUpTo?limit=10",//limit to 10
             type: "GET",
-            success: function(result) {  
+            success: function(result) {
               for(key in result){
                 if(result.hasOwnProperty(key)){
                   $('.table-wrapper tbody').append('<tr>' +
@@ -142,7 +122,7 @@
                     '<td>' + result[key].tagline + '</td>' +
                     '<td>' + result[key].genres.join(', ') + '</td>' +
                     '<td>' + result[key].releaseDate.split('-')[0] + '</td>' +
-                    '<td>' + result[key].averageRating.toFixed(1) + '</td>' +                    
+                    '<td>' + result[key].averageRating.toFixed(1) + '</td>' +
                     '<td><img class="x" style="width: 15px; height: 15px;" src="../assets/images/x.png" /></td>' +
                   '</tr>');
                 }
@@ -162,7 +142,7 @@
             window.location.replace('login.html');
           });
 
-          $('input[name="submit"]').on('click', function(){            
+          $('input[name="submit"]').on('click', function(){
             
             firebase.auth().onAuthStateChanged(function (user) {//makes sure they are signed in
               if (user && movieID != 0) {//if we are signed in
@@ -187,13 +167,13 @@
                     alert('success');
                     $("#query").val('');
                     movieId = 0;
-                  } 
+                  }
                 });
 
               }
             });
             
-          });   
+          });
 
           $(document).on('keyup', function(){
             if($("#query").is(":focus") && $("#query").val().length > 0){
@@ -210,14 +190,14 @@
                 var suggestions = result.results.slice(0, 3);
                 $('#movieSuggestions ul').html('');
                 for(var i = 0; i < suggestions.length; i++){
-                  $('#movieSuggestions ul').append('<li>' + 
-                                '<span class="movieTitle">' + suggestions[i].title + '</span>' + 
+                  $('#movieSuggestions ul').append('<li>' +
+                                '<span class="movieTitle">' + suggestions[i].title + '</span>' +
                                 '<img class="moviePoster" src="http://image.tmdb.org/t/p/w185' + suggestions[i].poster_path + '" />' +
                                 '<span class="movieYear">(' + suggestions[i].release_date.split('-')[0] + ')</span>' +
                                 '<span class="movieId" style="display: none">' + suggestions[i].id + '</span>' +
                               '</li>');
                 }
-              } 
+              }
             });
           }
 

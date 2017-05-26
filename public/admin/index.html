@@ -8,7 +8,12 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
-
+		
+		<style>
+		  #message { max-width: 360px; margin: -45px auto 16px; padding: 32px 24px 16px; }
+		  #message a{ display: block; text-align: center; text-transform: uppercase; text-decoration: none; color: gray; padding: 16px; border-radius: 4px; margin-bottom: 7px; border: 1px solid;}
+		</style>
+		
 		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	</head>
@@ -21,11 +26,12 @@
 					<div id="main">
 						<div class="inner">
 						  
-						  <div class="loginButtons">
-								<ul class="actions">
-									<li><input id="logout" name="logout" type="submit" value="Logout" /></li>
-								</ul>
-						  </div>						  
+						  <div class="welcomeBack">
+                Welcome <strong>Back!</strong>
+                <ul class="actions" style="display: inline-block; margin-left: 3%;">
+                  <li><input id="logout" type="submit" value="Logout" /></li>
+                </ul>
+              </div>
 
 							<!-- Header -->
 								<header id="header">
@@ -35,28 +41,14 @@
 							<!-- Section -->
   							<section>
   							  <div class="main-center">
-			                    <h3>Looking Good Today!</h3>
-			                    <p>Use the nav bar to write a new article, or add a movie to the movie watch list.</p>
-			                  </div>
+			               <h3>Looking Good Today!</h3>
+			               <p>Use the nav bar to write a new article, or add a movie to the movie watch list.</p>
+			             </div>
 			  				</section>
-
-              <!-- Sidebar -->
-                <div id="sidebar">
-                  <div class="inner">
-
-                    <!-- Menu -->
-                      <nav id="menu">
-                        <header class="major">
-                          <h2>Menu</h2>
-                        </header>
-                        <ul>
-                          <li><a href="./index.html">Home</a></li>
-                          <li><a href="./addArticle.html">Write an Article</a></li>
-                          <li><a href="./addToWatchList.html">Add Movie to Watch List</a></li>
-                        </ul>
-                      </nav>
-
-                  </div>
+			  				
+			  				<div id="message">
+                  <a href="./addArticle.html">Write An Article</a>
+                  <a href="./addToWatchList.html">Add Movie to Watch List</a>
                 </div>
 
 						</div>
