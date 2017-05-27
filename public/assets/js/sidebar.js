@@ -20,7 +20,7 @@ $(document).ready(function(){
                   '<p>Want to become a writer or recommend a movie for us to analyze? Shoot us an' +
                   'email!</p>' +
                   '<ul class="contact">' +
-                    '<li class="fa-envelope-o"><a href="@mailto:test@gmail.com">test@gamil.com</a></li>' +
+                    '<li class="fa-envelope-o"><a href="mailto:flicktheories@gmail.com">flicktheories@gmail.com</a></li>' +
                   '</ul>' +
                 '</section>' +
             '</div>');
