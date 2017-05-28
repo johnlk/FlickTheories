@@ -9,11 +9,6 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
 		
-		<style>
-		  #message { max-width: 360px; margin: -45px auto 16px; padding: 32px 24px 16px; }
-		  #message a{ display: block; text-align: center; text-transform: uppercase; text-decoration: none; color: gray; padding: 16px; border-radius: 4px; margin-bottom: 7px; border: 1px solid;}
-		</style>
-		
 		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	</head>
@@ -25,31 +20,38 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-						  
-						  <div class="welcomeBack">
-                Welcome <strong>Back!</strong>
-                <ul class="actions" style="display: inline-block; margin-left: 3%;">
-                  <li><input id="logout" type="submit" value="Logout" /></li>
-                </ul>
-              </div>
 
 							<!-- Header -->
 								<header id="header">
 									<span><strong>Flick</strong> Theories</span>
+									<h3 class="pageDeclaration">Writers and Admin Login</h3>
 								</header>
 								
 							<!-- Section -->
-  							<section>
-  							  <div class="main-center">
-			               <h3>Looking Good Today!</h3>
-			               <p>Use the links below to write a new article, or add a movie to the movie watch list.</p>
-			             </div>
-			  				</section>
-			  				
-			  				<div id="message">
-                  <a href="./addArticle.html">Write An Article</a>
-                  <a href="./addToWatchList.html">Add Movie to Watch List</a>
-                </div>
+							<section>
+							  <!-- Form -->
+							    <form onsubmit="return false">
+  	    						<div class="loginForm">
+  				            <div class="row uniform">
+  				              <div class="6u 12u$(xsmall)">
+  				                <input id="demo-email" name="email" placeholder="Email" type="email" value="" required>
+  				              </div>
+  				            </div>
+  				            <div class="row uniform">
+  				              <div class="6u$ 12u$(xsmall)">
+  				                <input id="demo-email" name="password" placeholder="Password" type="password" value="" required>
+  				              </div>
+  				            </div>
+  				            <div class="row uniform">
+  				              <div class="12u$">
+  				                <ul class="actions">
+  				                  <li><input class="special" type="submit" value="Login"></li>
+  				                </ul>
+  				              </div>
+  				            </div>
+  				          </div>
+				          </form>
+							</section>
 
 						</div>
 					</div>
@@ -67,23 +69,44 @@
 			<script src="../assets/js/initFirebase.js"></script>
 			<script type="text/javascript">
 		        $(document).ready(function () {
-		          
-		          firebase.auth().onAuthStateChanged(function (user) {
-		            if (!user) {
-		              window.location.replace('login.html');
-		            }
 
-		            if(!window.fireApp.isAdministrator(user.uid)){
-					   	window.location.replace('login.html');
+			        firebase.auth().onAuthStateChanged(function (user) {
+			          if (user) {//if we are already signed in
+
+			            if(window.fireApp.isAdministrator(user.uid)){
+			            	window.location.replace('welcome.html');
+			            }else{
+			            	alert("you don't have admin access");
+			            }
+			          }
+			        });
+
+					$(document).on('keyup', function(e){
+						if(e.keyCode == 13){
+							var user = $('input').eq(0).val();
+							var pass = $('input').eq(1).val();
+							if($('input').eq(1).is(":focus") && user.length > 0 && pass.length > 0){
+								login(user, pass);
+							}
+						}
+					});
+
+					$('.special').on('click', function(){
+						var user = $('input').eq(0).val();
+						var pass = $('input').eq(1).val();
+						if(user.length > 0 && pass.length > 0){
+							login(user, pass);
+						}
+					});
+
+					function login(username, password){
+						firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
+						    // Handle Errors here.
+							var errorCode = error.code;
+							var errorMessage = error.message;
+							console.log(error);
+						});
 					}
-
-		          });
-		          
-		          $('#logout').on('click', function(){
-		            window.fireApp.signOut();
-		            window.location.replace('login.html');
-		          });
-          
 
 				});
 			</script>

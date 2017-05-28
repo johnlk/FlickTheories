@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Movie Thoughts and Theories</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+		
+		<style>
+		  #message { max-width: 360px; margin: -45px auto 16px; padding: 32px 24px 16px; }
+		  #message a{ display: block; text-align: center; text-transform: uppercase; text-decoration: none; color: gray; padding: 16px; border-radius: 4px; margin-bottom: 7px; border: 1px solid;}
+		</style>
+		
+		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	</head>
+	<body>
+  
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+						  
+						  <div class="welcomeBack">
+                Welcome <strong>Back!</strong>
+                <ul class="actions" style="display: inline-block; margin-left: 3%;">
+                  <li><input id="logout" type="submit" value="Logout" /></li>
+                </ul>
+              </div>
+
+							<!-- Header -->
+								<header id="header">
+									<span><strong>Flick</strong> Theories</span>
+								</header>
+								
+							<!-- Section -->
+  							<section>
+  							  <div class="main-center">
+			               <h3>Looking Good Today!</h3>
+			               <p>Use the links below to write a new article, or add a movie to the movie watch list.</p>
+			             </div>
+			  				</section>
+			  				
+			  				<div id="message">
+                  <a href="./addArticle.html">Write An Article</a>
+                  <a href="./addToWatchList.html">Add Movie to Watch List</a>
+                </div>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+			<script src="../assets/js/movieFireApp.js"></script>
+			<script src="../assets/js/initFirebase.js"></script>
+			<script type="text/javascript">
+		        $(document).ready(function () {
+		          
+		          firebase.auth().onAuthStateChanged(function (user) {
+		            if (!user) {
+		              window.location.replace('index.html');
+		            }
+
+		            if(!window.fireApp.isAdministrator(user.uid)){
+					   	window.location.replace('index.html');
+					}
+
+		          });
+		          
+		          $('#logout').on('click', function(){
+		            window.fireApp.signOut();
+		            window.location.replace('index.html');
+		          });
+          
+
+				});
+			</script>
+
+	</body>
+</html>

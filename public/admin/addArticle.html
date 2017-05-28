@@ -90,11 +90,11 @@
           
           firebase.auth().onAuthStateChanged(function(user) {
             if (!user) {
-              window.location.replace('login.html');
+              window.location.replace('index.html');
             }
 
             if(!window.fireApp.isAdministrator(user.uid)){
-              window.location.replace('login.html');
+              window.location.replace('index.html');
             }
 
           });
@@ -102,7 +102,7 @@
           $('#logout').on('click', function(){
             console.log('eyah');
             window.fireApp.signOut();
-            window.location.replace('login.html');
+            window.location.replace('index.html');
           });
 
           $('input[name="submit"]').on('click', function(){
