@@ -86,21 +86,26 @@
 	                  url: "https://us-central1-moviethoughts-d188d.cloudfunctions.net/getAllArticles",
 	                  type: "GET",
 	                  success: function(result) {
+	                  	var articlesBackward = [];
 	                  	for(key in result){
 	                  		if(result.hasOwnProperty(key)){
-	                  			var dateUploaded = new Date(parseInt(result[key].dateCreated));
-	                  			$('.posts').append('<article><a href="./articlePage.html?movie=' + result[key].movieTitle + '" class="image">' +
-	                  				'<img src="' + result[key].posterURL + '" alt="' + result[key].movieTitle + '" /></a>' +
-									'<h3>' + result[key].articleTitle + '</h3>' +
-									'<p>' + result[key].articleText.substring(0, 300) + '&hellip;</p>' +
+	                  			articlesBackward.push(result[key]);
+	                  		}
+	                  	}
+	                  	//temporary hack
+	                  	for(var i = articlesBackward.length -1; i >= 0; i--){
+	                  		var dateUploaded = new Date(parseInt(articlesBackward[i].dateCreated));
+	                  			$('.posts').append('<article><a href="./articlePage.html?movie=' + articlesBackward[i].movieTitle + '" class="image">' +
+	                  				'<img src="' + articlesBackward[i].posterURL + '" alt="' + articlesBackward[i].movieTitle + '" /></a>' +
+									'<h3>' + articlesBackward[i].articleTitle + '</h3>' +
+									'<p>' + articlesBackward[i].articleText.substring(0, 300) + '&hellip;</p>' +
 									'<p><strong>Uploaded</strong>: ' + dateUploaded.toString().split(' ')[1] + " " + 
 									dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
-									'<p style="margin:-15px 0 17px 0;"><strong>Author</strong>: ' + result[key].author + '</p>' +
+									'<p style="margin:-15px 0 17px 0;"><strong>Author</strong>: ' + articlesBackward[i].author + '</p>' +
 									'<ul class="actions">' +
-									'<li><a href="./articlePage.html?movie=' + result[key].movieTitle + '" class="button">More</a></li>' +
+									'<li><a href="./articlePage.html?movie=' + articlesBackward[i].movieTitle + '" class="button">More</a></li>' +
 									'</ul>' +
 								'</article>');
-	                  		}
 	                  	}
 	                  }
 	              	});
