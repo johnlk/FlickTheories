@@ -17,7 +17,7 @@ $(document).ready(function(){
                   '<header class="major">' +
                     '<h2>Get in touch</h2>' +
                   '</header>' +
-                  '<p>Want to become a writer or recommend a movie for us to analyze? Shoot us an' +
+                  '<p>Want to become a writer or recommend a movie for us to analyze? Shoot us an ' +
                   'email!</p>' +
                   '<ul class="contact">' +
                     '<li class="fa-envelope-o"><a href="mailto:flicktheories@gmail.com">flicktheories@gmail.com</a></li>' +
