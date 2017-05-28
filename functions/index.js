@@ -35,19 +35,19 @@ exports.getArticlesUpTo = functions.https.onRequest((req, res) => {
 
 //TODO
 //needs fixing
-exports.getArticleRange = functions.https.onRequest((req, res) => {
+// exports.getArticleRange = functions.https.onRequest((req, res) => {
 
-	res.set('Access-Control-Allow-Origin', "*");
-  	res.set('Access-Control-Allow-Methods', 'GET, POST');
+// 	res.set('Access-Control-Allow-Origin', "*");
+//   	res.set('Access-Control-Allow-Methods', 'GET, POST');
 
-	var lowerLimit = parseInt(req.query.lower);
-	var upperLimit = parseInt(req.query.upper);
+// 	var lowerLimit = parseInt(req.query.lower);
+// 	var upperLimit = parseInt(req.query.upper);
 
-	admin.database().ref('/articles').startAt(lowerLimit).endAt(upperLimit).on('value', function(snapshot) {
-		res.send(snapshot.val());
-	});
+// 	admin.database().ref('/articles').startAt(lowerLimit).endAt(upperLimit).on('value', function(snapshot) {
+// 		res.send(snapshot.val());
+// 	});
 
-});
+// });
 
 //working great
 //user ?title= or ?movie=
