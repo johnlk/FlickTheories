@@ -105,14 +105,14 @@ exports.getMovieListUpTo = functions.https.onRequest((req, res) => {
 });
 
 //works
-exports.getAdmins = functions.https.onRequest((req, res) => {
+// exports.getAdmins = functions.https.onRequest((req, res) => {
 
-	res.set('Access-Control-Allow-Origin', "*");
-  	res.set('Access-Control-Allow-Methods', 'GET, POST');
+// 	res.set('Access-Control-Allow-Origin', "*");
+//   	res.set('Access-Control-Allow-Methods', 'GET, POST');
 
-	admin.database().ref('/admins').on('value', function(snapshot) {
-		res.send(snapshot.val());
-	});
+// 	admin.database().ref('/admins').on('value', function(snapshot) {
+// 		res.send(snapshot.val());
+// 	});
 
-});
+// });
 
