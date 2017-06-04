@@ -1354,12 +1354,16 @@
 	  }
 	  
 	  .loginButtons {
-	    margin: 12% 0 -20% 25%;
+	    margin: 12% 0 -10% 25%;
 	  }
 	  
 	  #movieInfo img {
 	    margin-top: -100px;
       height: 156px;
+	  }
+	  
+	  .loginForm {
+	    width: 67%;
 	  }
 	}
 
