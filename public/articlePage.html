@@ -55,6 +55,8 @@
 									</div> -->
 								</section>
 
+								
+
 						</div>
 					</div>
 
@@ -80,6 +82,9 @@
 			<script>
 			$(document).ready(function(){
 
+				var originalWriter = false;
+				var dateCreated = 0;
+
 				$.ajax({
 	                url: 'https://us-central1-moviethoughts-d188d.cloudfunctions.net/getArticleBy?' +
 	                	window.location.href.split('?')[1],
@@ -104,8 +109,33 @@
 										'<p><strong>Genres: </strong>' + result.movieGenres.join(', ') + '</p>' +
 										'<img src="' + result.posterURL + '" />' +
 									'</div>');
+
+						firebase.auth().onAuthStateChanged(function (user) {
+							if(result.userUID = user.uid){
+								originalWriter = true;
+								dateCreated = result.dateCreated;
+								$('.inner').append('<input type="submit" value="delete" id="deleteArticle">');
+							}
+						});
 	                }
 	            });
+
+	            
+
+	            // $.ajax({
+	            // });
+
+	            $('body').on('click', '#deleteArticle', function(){
+	            	if(originalWriter && dateCreated != 0){
+	            		fireApp.deleteArticle(dateCreated);
+	            		setTimeout(function(){	            			
+	            			window.location.replace('index.html');
+	            		}, 1500);
+	            	}else{
+	            		$('#deleteArticle').remove();
+	            	}
+	            });
+
 			});
 			</script>
 			<script>

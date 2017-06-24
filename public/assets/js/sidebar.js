@@ -8,6 +8,7 @@ $(document).ready(function(){
                   '</header>' +
                   '<ul>' +
                     '<li><a href="index.html">Homepage</a></li>' +
+                    '<li><a href="writeArticle.html">Write an Article</a></li>' +
                     '<li><a href="allArticles.html">All Articles</a></li>' +
                     '<li><a href="movieList.html">Movie List</a></li>' +
                   '</ul>' +

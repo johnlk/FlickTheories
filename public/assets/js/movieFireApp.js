@@ -36,6 +36,18 @@ FireApp.prototype.removeFromMovieList = function(movieName) {
   });
 };
 
+FireApp.prototype.deleteArticle = function(dateCreated){
+  var that = this;
+  this.database.ref('/articles').on('value', function(snapshot) {
+    var articles = snapshot.val();
+    for(key in articles){
+      if(articles.hasOwnProperty(key) && articles[key].dateCreated == dateCreated){
+        that.database.ref('/articles/' + key).remove();
+      }
+    }
+  });
+}
+
 FireApp.prototype.isAdministrator = function(uid) {
   var admins = ["TFQHoVg0RqYuUoMEMLgN9S7hUBc2", "URiRTmp97VhR1mU7Gss2ACmep9J3", "mkiXn1E0iAaWuHASR7PlZwiLhlz2"];
   // this.database.ref('/admins').on('value', function(snapshot) {
