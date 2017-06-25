@@ -30,7 +30,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<span><strong>Flick</strong> Theories</span>
+                  <a href="index.html" class="logo"><strong>Flick</strong> Theories</a>
 									<h3 class="pageDeclaration">Write an Article</h3>
 								</header>
 								
@@ -131,7 +131,8 @@
                       movieRating: result.vote_average,
                       posterURL: "http://image.tmdb.org/t/p/w185" + result.poster_path,
                       userUID: user.uid,
-                      dateCreated: date
+                      dateCreated: date,
+                      votes: 0
                     });
                     
                     alert('success');

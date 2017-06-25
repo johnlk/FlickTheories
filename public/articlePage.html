@@ -108,7 +108,7 @@
 						$('#banner').append('<div class="content">' +
 										'<header>' +
 											'<h1>' + result.articleTitle + '</h1>' +
-											// '<span><img style="width: 80px;margin:-27px -50px 36px 11%;" src="./assets/images/blackUp.png">' + result.votes + '</span>' + '' + 
+											'<div class="voteBox"><img style="width: 80px;margin:-27px -50px 36px 11%;" src="./assets/images/grayUp.png">' + result.votes + '</div>' +
 											'<p><strong>Uploaded: </strong>' + dateUploaded.toString().split(' ')[1] + " " +
 									dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
 											'<p><strong>Author: </strong>' + result.author + '</p>' +
@@ -142,6 +142,32 @@
 	            		}, 1500);
 	            	}else{
 	            		$('#deleteArticle').remove();
+	            	}
+	            });
+
+	            var upVoted = false;
+
+	            $('body').on('mouseover', '.voteBox img', function(){
+	            	$(this).css('cursor', 'pointer');
+	            	if(!upVoted){
+	            		$(this).attr('src', './assets/images/blackUp.png');
+	            	}	            	
+	            });
+
+	            $('body').on('mouseout', '.voteBox img', function(){
+	            	$(this).css('cursor', 'default');
+	            	if(!upVoted){	            		
+	            		$(this).attr('src', './assets/images/grayUp.png');
+	            	}
+	            });
+
+	            $('body').on('click', '.voteBox img', function(){	
+	            	if(!upVoted){
+	            		$(this).attr('src', './assets/images/greenUp.png');
+		            	upVoted = true;
+		            	var originalHtml = $(this).parent().html();
+		            	$(this).parent().html(originalHtml.split('>')[0] + ">" + (parseInt(originalHtml.split('>')[1]) + 1));
+		            	fireApp.addVote(dateCreated, parseInt(originalHtml.split('>')[1]));
 	            	}
 	            });
 

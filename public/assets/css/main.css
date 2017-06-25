@@ -135,6 +135,12 @@
 		margin: 0 0 13px 8px;
 	}
 
+	.voteBox {
+		margin: -50px 7% 0px 0;
+    	font-size: 30px;
+    	text-align: right;    	
+	}
+
 	.x:hover {
 		cursor: pointer;
 	}
