@@ -111,7 +111,7 @@
 									'</div>');
 
 						firebase.auth().onAuthStateChanged(function (user) {
-							if(result.userUID = user.uid){
+							if(result.userUID == user.uid){
 								originalWriter = true;
 								dateCreated = result.dateCreated;
 								$('.inner').append('<input type="submit" value="delete" id="deleteArticle">');
