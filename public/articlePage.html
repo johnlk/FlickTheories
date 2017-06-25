@@ -55,6 +55,19 @@
 									</div> -->
 								</section>
 
+
+								<section id="comments">
+									<div class="content">
+										<h1>Comments</h1>
+										<div class="row uniform">
+    									<div class="12u$">
+    										<textarea name="comment" id="demo-message" placeholder="Comment ..." rows="10"></textarea>
+    									</div>
+    									<div class="12u$" style="text-align: right;">
+    										<input id="postComment" type="submit" value="Add Comment">
+    									</div>
+									</div>
+								</section>
 								
 
 						</div>
@@ -95,6 +108,7 @@
 						$('#banner').append('<div class="content">' +
 										'<header>' +
 											'<h1>' + result.articleTitle + '</h1>' +
+											// '<span><img style="width: 80px;margin:-27px -50px 36px 11%;" src="./assets/images/blackUp.png">' + result.votes + '</span>' + '' + 
 											'<p><strong>Uploaded: </strong>' + dateUploaded.toString().split(' ')[1] + " " +
 									dateUploaded.toString().split(' ').splice(2, 2).join(', ') + '</p>' +
 											'<p><strong>Author: </strong>' + result.author + '</p>' +
@@ -114,16 +128,11 @@
 							if(result.userUID == user.uid){
 								originalWriter = true;
 								dateCreated = result.dateCreated;
-								$('.inner').append('<input type="submit" value="delete" id="deleteArticle">');
+								$('#movieInfo').append('<input type="submit" value="delete" id="deleteArticle">');
 							}
 						});
 	                }
 	            });
-
-	            
-
-	            // $.ajax({
-	            // });
 
 	            $('body').on('click', '#deleteArticle', function(){
 	            	if(originalWriter && dateCreated != 0){
