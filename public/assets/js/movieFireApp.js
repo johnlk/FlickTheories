@@ -24,6 +24,21 @@ FireApp.prototype.addToMovieList = function(obj) {
   this.database.ref('movieList').push(obj);
 };
 
+FireApp.prototype.addComment = function(obj, numComments) {
+  this.database.ref('comments').push(obj);
+  var that = this;
+  this.database.ref('/articles').on('value', function(snapshot) {
+    var articles = snapshot.val();
+    for(key in articles){
+      if(articles.hasOwnProperty(key) && articles[key].dateCreated == obj.parent){
+        that.database.ref('/articles/' + key).update({
+          comments: numComments + 1
+        });
+      }
+    }
+  });
+};
+
 FireApp.prototype.addVote = function(dateCreated, votes){
   var that = this;
   this.database.ref('/articles').on('value', function(snapshot) {
