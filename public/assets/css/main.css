@@ -144,6 +144,25 @@
 	.x:hover {
 		cursor: pointer;
 	}
+
+	#comment {
+		font-size: 14px;
+		padding: 5px;
+		border-bottom: 1px dashed black;
+	}
+
+	#commentList {
+		width: 100%;
+	}
+
+	#commentList li {
+		padding: 0;
+	}
+
+	#commentList ul{
+		list-style-type: none;
+		padding: 0;
+	}
 	
 	@-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)}
