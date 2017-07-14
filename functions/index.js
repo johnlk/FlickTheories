@@ -33,6 +33,34 @@ exports.getArticlesUpTo = functions.https.onRequest((req, res) => {
 
 });
 
+
+exports.getComments = functions.https.onRequest((req, res) => {
+
+	res.set('Access-Control-Allow-Origin', "*");
+  	res.set('Access-Control-Allow-Methods', 'GET, POST');
+
+  	var parentID = req.query.id;
+
+  	admin.database().ref('/comments').on('value', function(snapshot) {
+		var comments = snapshot.val(); //object {}
+
+		var fullRes = '{"comments": [';
+
+		for(key in comments){
+			if(comments.hasOwnProperty(key)){
+				var comment = comments[key];
+				if(comment["parent"] == parentID){
+					fullRes += JSON.stringify(comment) + ',';
+				}
+			}
+		}
+
+		res.send(fullRes.substring(0, fullRes.length - 1) + "]}");
+
+	});
+
+});
+
 //TODO
 //needs fixing
 // exports.getArticleRange = functions.https.onRequest((req, res) => {
@@ -116,11 +144,11 @@ exports.getMovieListUpTo = functions.https.onRequest((req, res) => {
 
 // });
 
-exports.getMovieListUpTo = functions.https.onRequest((req, res) => {
+// exports.getMovieListUpTo = functions.https.onRequest((req, res) => {
 
-	res.set('Access-Control-Allow-Origin', "*");
-  	res.set('Access-Control-Allow-Methods', 'GET, POST');
+// 	res.set('Access-Control-Allow-Origin', "*");
+//   	res.set('Access-Control-Allow-Methods', 'GET, POST');
 
   	
 
-});
+// });

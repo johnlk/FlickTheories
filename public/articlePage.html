@@ -68,9 +68,9 @@
     									</div>
     									<div id="commentList">
     										<ul>
-    											<li><div id="comment">So dope!</div></li>
+    											<!-- <li><div id="comment">So dope!</div></li>
     											<li><div id="comment">Never thought of it that way!</div></li>
-    											<li><div id="comment">Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something?</div></li>
+    											<li><div id="comment">Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something? Wouldn't you say the Joel is just something?</div></li> -->
     										</ul>
     									</div>
 									</div>
@@ -110,7 +110,7 @@
 	                	window.location.href.split('?')[1],
 	                type: "GET",
 	                success: function(result) {
-	                	console.log(result);
+	                	// console.log(result);
 						var dateUploaded = new Date(parseInt(result.dateCreated));
 						$('#banner').append('<div class="content">' +
 										'<header>' +
@@ -138,7 +138,22 @@
 								$('#movieInfo').append('<input type="submit" value="delete" id="deleteArticle">');
 							}
 						});
-	                }
+
+
+						//load the comments
+						$.ajax({
+			                url: 'https://us-central1-moviethoughts-d188d.cloudfunctions.net/getComments?id=' +
+			                	result.dateCreated,
+			                type: "GET",
+			                success: function(result) {
+			                	comments = JSON.parse(result).comments;
+			                	for(var i = 0; i < comments.length; i++){
+			                		$('#commentList ul').append('<li><div id="comment">' + comments[i].text + '</div>');
+			                	}
+			                }
+			            });
+
+					}
 	            });
 
 	            $('body').on('click', '#deleteArticle', function(){
@@ -186,7 +201,9 @@
 			            		text: $('#commentText').val(),
 			            		author: 'that\'s a tought one',
 			            		votes: 0
-			            	}, 0);//0 should be replaced with ul>li list length
+			            	}, $('#commentList ul').children('li').length);
+			            	$('#commentList ul').append('<li><div id="comment">' + $('#commentText').val() + '</div>');
+			            	$('#commentText').val('');
 	            		}else{
 	            			alert('must be signed in to leave a comment!');
 	            		}
