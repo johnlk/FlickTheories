@@ -91,10 +91,9 @@ $(document).ready(function() {
   });
   
   $('#createAccountButton').on('click', function() {
-    var name = $('#newName').val();
     var email = $('#newEmail').val();
     var password = $('#pass').val();
-    if (name.length > 0 && email.length > 0 && password.length > 0) {
+    if (email.length > 0 && password.length > 0) {
       firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
         location.reload();
       }).catch(function(error) {
