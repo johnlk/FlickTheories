@@ -132,7 +132,7 @@
 									'</div>');
 
 						firebase.auth().onAuthStateChanged(function (user) {
-							if(result.userUID == user.uid){
+							if(user && result.userUID == user.uid){
 								originalWriter = true;
 								dateCreated = result.dateCreated;
 								$('#movieInfo').append('<input type="submit" value="delete" id="deleteArticle">');
@@ -169,6 +169,19 @@
 
 	            var upVoted = false;
 
+	            setTimeout(function(){
+					var cookies = decodeURIComponent(document.cookie).split(';');
+		            for(var c = 0; c < cookies.length; c++){
+		            	if(cookies[c].indexOf('upvoted') != -1){
+		            		if(cookies[c].split('=')[1] && cookies[c].split('=')[1] == dateCreated){
+		            			upVoted = true;	            			
+		            			$('.voteBox img').attr('src', './assets/images/greenUp.png');
+		            		}
+		            	}
+		            }
+	            }, 400);
+	            
+
 	            $('body').on('mouseover', '.voteBox img', function(){
 	            	$(this).css('cursor', 'pointer');
 	            	if(!upVoted){
@@ -184,12 +197,20 @@
 	            });
 
 	            $('body').on('click', '.voteBox img', function(){	
+	            	var img = $(this);
 	            	if(!upVoted){
-	            		$(this).attr('src', './assets/images/greenUp.png');
-		            	upVoted = true;
-		            	var originalHtml = $(this).parent().html();
-		            	$(this).parent().html(originalHtml.split('>')[0] + ">" + (parseInt(originalHtml.split('>')[1]) + 1));
-		            	fireApp.addVote(dateCreated, parseInt(originalHtml.split('>')[1]));
+	            		firebase.auth().onAuthStateChanged(function (user) {
+		            		if(user){
+		            			img.attr('src', './assets/images/greenUp.png');
+				            	upVoted = true;
+				            	var originalHtml = img.parent().html();
+				            	img.parent().html(originalHtml.split('>')[0] + ">" + (parseInt(originalHtml.split('>')[1]) + 1));
+				            	fireApp.addVote(dateCreated, parseInt(originalHtml.split('>')[1]));
+				            	document.cookie = "upvoted=" + dateCreated + ";";
+		            		}else{
+		            			alert('must be signed in to vote on an article!');
+		            		}
+		            	});
 	            	}
 	            });
 
