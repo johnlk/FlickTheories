@@ -1360,7 +1360,7 @@
 	}
 	
 	@media screen and (max-width: 735px) {
-	  #voteBox {
+	  .voteBox {
 	    margin: 35px 7% -62px 0;
 	  }
 	}
@@ -1389,8 +1389,8 @@
 	  }
 	  
 	  #movieInfo img {
-	    margin-top: -132px;
-      height: 156px;
+	    margin-top: -104px;
+      	height: 156px;
 	  }
 	  
 	  .loginForm {
