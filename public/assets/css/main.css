@@ -138,7 +138,7 @@
 	.voteBox {
 		margin: -50px 7% 0px 0;
     	font-size: 30px;
-    	text-align: right;    	
+    	text-align: right;
 	}
 
 	.x:hover {
@@ -1359,6 +1359,12 @@
 
 	}
 	
+	@media screen and (max-width: 735px) {
+	  #voteBox {
+	    margin: 35px 7% -62px 0;
+	  }
+	}
+	
 	@media screen and (max-width: 655px) {
 	  .welcomeBack {
 	    margin: 2% 0 -3% 60%;
@@ -1383,7 +1389,7 @@
 	  }
 	  
 	  #movieInfo img {
-	    margin-top: -100px;
+	    margin-top: -132px;
       height: 156px;
 	  }
 	  
@@ -3761,6 +3767,7 @@
 
 				#main > .inner > section {
 					padding: 3em 0 1em 0 ;
+					margin-bottom: 42px;
 				}
 
 		}
