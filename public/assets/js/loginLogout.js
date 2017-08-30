@@ -147,6 +147,7 @@ $(document).ready(function() {
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log(error);
+      alert('Incorrect username or password');
     });
   }
   
