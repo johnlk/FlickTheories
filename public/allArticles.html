@@ -98,6 +98,7 @@
 	                  	}
 	                  	//temporary hack
 	                  	for(var i = articlesBackward.length -1; i >= 0; i--){
+	                  		articlesBackward[i].comments = articlesBackward[i].comments || 0;
 	                  		var dateUploaded = new Date(parseInt(articlesBackward[i].dateCreated));
 	                  			$('.posts').append('<article><a href="./articlePage.html?movie=' + articlesBackward[i].movieTitle + '" class="image">' +
 	                  				'<img src="' + articlesBackward[i].posterURL + '" alt="' + articlesBackward[i].movieTitle + '" /></a>' +
